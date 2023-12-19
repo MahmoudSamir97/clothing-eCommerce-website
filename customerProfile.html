@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="customerProfileStyle.css" />
+    <link rel="icon" type="image/x-icon" href="icons8-cart-48.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!--*****************Header************************* -->
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="amazon_logo.png" alt="logo" />
+      </div>
+      <div class="search-container">
+        <input type="text" class="searchInput" id="search-input" />
+        <i class="fa fa-magnifying-glass search-icon"></i>
+      </div>
+      <div class="nav-info-container">
+        <div class="signIn-container">
+          <p class="aside-txt">Hello</p>
+          <a class="hyper-link" href="#" id="signIn-link">Sign In</a>
+        </div>
+        <div class="orders-container">
+          <p class="aside-txt">resturns</p>
+          <a href="#" class="hyper-link" id="order-link">& Orders</a>
+        </div>
+        <div class="cart-container">
+          <i class="fa fa-cart-shopping cart-icon"></i>
+          <p id="card-count" class="count-txt">0</p>
+        </div>
+      </div>
+    </nav>
+    <!-- //////////////////////Body////////////////////// -->
+    <div class="main-container">
+      <div class="orders-btn cell" onclick="showContent('orders')">Orders</div>
+      <div class="profileinfo-btn cell" onclick="showContent('profile-info')">
+        Profile Info
+      </div>
+      <div class="wishlist-btn cell" onclick="showContent('wishlist')">
+        Wishlist
+      </div>
+      <div class="right-container">
+        <div class="orders-content active-content">
+          <!-- Content for Orders -->
+          <h2>Your Orders</h2>
+          <!-- Add content specific to Orders here -->
+          <div class="orders-cards">
+            <div class="order-card-header">
+              <div class="order-details">Order Placed:</div>
+              <div class="order-details">10 December 2023</div>
+
+              <div class="order-details">Total:</div>
+              <div class="order-details">EGP 116.50</div>
+              <div class="order-details">Order Number:</div>
+              <div class="order-details">123456789</div>
+            </div>
+            <div class="order-card-body">
+              <h3>Order Status: Pending</h3>
+              <img
+                class="product-img"
+                src="https://m.media-amazon.com/images/I/61L47z4lY7L._AC_SL1500_.jpg"
+              />
+              <p class="product-name">External Hard Drive Enclosure Casing</p>
+            </div>
+          </div>
+        </div>
+        <div class="profile-info-content">
+          <!-- Content for Profile Info -->
+          <h2>Your Profile</h2>
+          <!-- Add content specific to Profile Info here -->
+          <div class="profile-content"></div>
+        </div>
+        <div class="wishlist-content">
+          <!-- Content for Wishlist -->
+          <h2>Your Wishlist</h2>
+          <!-- Add content specific to Wishlist here -->
+          <div class="wishlist"></div>
+        </div>
+      </div>
+    </div>
+    <script src="customerProfile.js"></script>
+  </body>
+</html>
