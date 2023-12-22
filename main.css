@@ -1,13 +1,15 @@
 *,*::before,*::after,*:hover{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 body{
-    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
 }
 .relevant{
     position: relative;
+    height: 80vh;
+
 }
 .main-nav{
     position: fixed;
@@ -197,6 +199,9 @@ footer{
 }
 .cart-items-container{
     padding: 0.45rem 1.5rem;
+    height: 50vh;
+    overflow-y: auto;
+
 
 }
 .cart-item{
@@ -278,8 +283,23 @@ footer{
 .totalOfItem{
     font-size: 0.85rem;
 }
-.cart-footer{
 
+.cart-footer{
+    padding:  0 1.5rem;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+}
+.main-total{
+    font-size: 14px;
+    font-weight: 700;
+}
+.rubbish-icon{
+    width: 21px;
+    height: 21px;
+
+    cursor: pointer;
 }
 
 .cartFooter-firstRow{
@@ -288,71 +308,28 @@ footer{
     align-items: center;
 }
 .cartFooter-btnsContainer{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+.cartFooter-btn{
+    padding: 0.7rem 0;
+    margin-bottom: 0.65rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+}
+.view-cart{
+    background-color: lightgray;
+    color: #000;
+    margin-top: 0.5rem;
 }
 
-/* responsive design */
-/* for mobile */
-/* @media screen and (max-width: 800px) {
-    body{
-        margin: 0;
-        padding: 0;
-    }
-    nav{
-        justify-content: space-around;
-        margin-top: 0;
-    }
-    .hero_image{
-        width: 160px;
-        height: 350px;
-        right: 0;
-        bottom: 10px;
-    }
-    .hero_header_container{
-        left: 10%;
-    }
-    .trend{
-        font-size: 12px;
-    }
-    .hero_header{
-        font-size: 1.25rem;
-    }
-    .products-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.check-out{
+    background-color: #000;
+    color: #fff;
 
-} */
-
-/* for tablets */
-/* @media screen  and (min-width:564px ) and (max-width: 763px) {
-    nav{
-        justify-content: space-between;
-
-    }
-    .hero_image{
-        width: 170px;
-        height: 420px;
-    }
-    body{
-        background-color: red;
-    }
-    .products-container{
-        display: grid;
-        grid-template-columns: auto auto;
-        column-gap: 1rem;
-
-    }
-    .trend{
-        font-size: 1rem;
-    }
-    .hero_header{
-        font-size: 2rem;
-    }
-    .hero_header_container{
-        left: 10%;
-    }
-} */
+}
 
 
