@@ -9,10 +9,120 @@
     <link rel="icon" type="image/x-icon" href="images/logo.svg">
 </head>
 <body>
-    <nav onscroll="handling()">
+    <nav class="main-nav">
         <img src="images/logo.svg" alt="logo">
         <img src="images/icons8-cart-96.png" alt="cart" id="cart">
     </nav>
+    <div class="cart">
+        <div class="relevant">
+            <nav>
+             <p class="cart-title">Shopping Bag (<span id="count">5</span>) </p>
+             <img src="images/right-arrow.png" alt="back arrow" id="back-arrow" class="backArrow">
+            </nav>
+            <hr style="width: 90%; color: #f1f2f3;">
+            <div class="cart-items-container" >
+    
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+                
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cart-footer">
+                <div class="cartFooter-firstRow">
+                    <p>Total: $109.95</p>
+                    <img src="images/delete (2).png" alt="deleta all">
+                </div>
+                <div class="cartFooter-btnsContainer">
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="hero">
         <div class="hero_header_container">
             <p class="trend">new trend</p>
@@ -24,96 +134,7 @@
         </div>
     </div>
     <div class="products-container" id="main-container">
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
-            <!-- single product -->
-            <div class="single-product">
-                <div class="product-img-container">
-                    <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="clthes">
-                </div>
-                <p class="product-category">Men's Clothing</p>
-                <p class="product-title">Mens Casual Premium Slim Fit T-Shirts </p>
-                <p class="product-price">$ 109.95</p>
-            </div>
+        <!-- products goes here dynamically -->
     </div>
     <footer>
         <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
