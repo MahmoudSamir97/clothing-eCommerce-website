@@ -20,6 +20,7 @@ body {
   height: auto;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 nav {
   position: fixed;
@@ -39,7 +40,7 @@ nav img {
 
 .adminContainer {
   width: 100%;
-  height: 600px;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -47,7 +48,7 @@ nav img {
 .sidebar {
   width: 20%;
   border-right: 1px solid #ddd;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   background-color: #f5e6df;
   margin-top: 53px;
 }
@@ -119,7 +120,7 @@ nav img {
 
 /* *************Order Cards************* */
 .adminContent {
-  height: 500px;
+  height: 100vh;
   overflow: auto;
 }
 .orders-cards {
