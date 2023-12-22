@@ -25,24 +25,23 @@ const displayOnPage = async()=>{
                     <p class="product-price">${product.price}</p>
                 </div>
             `;
-        }  
+        } 
         const addBtns = document.querySelectorAll("#add-btn");
         for(let i =0 ; i < addBtns.length; i++){
             addBtns[i].addEventListener("click", addToCart);
 
             function addToCart(e){
-                let counter = 0;
                 for (const product of products[0]){
                     const currentelement = e.target.parentElement.parentElement;
                     if(parseInt(currentelement.getAttribute("data-id")) === product.id){
-                        cartItems.push(product);
-                    if(cartItems.includes(product)){
-                        cartItems.push({
-                            ...product,
-                            count: counter++
-                        })
-                    }
-                        updateCartDisplay();
+                        let counter = 1;
+                        if(!cartItems.includes(product)){
+                            cartItems.push(product);
+                            updateCartDisplay(counter);
+                        }else{
+                            counter++;
+                            updateCartDisplay(counter);
+                        }
 
                     };
                 }
@@ -51,18 +50,34 @@ const displayOnPage = async()=>{
 }
     displayOnPage();
 
-    function updateCartDisplay(){
-        const cartContainer = document.getElementById("cart");
-        const cartUnorederdList = document.getElementById("cart-items");
+    function updateCartDisplay(numberOfOrder){
+        const cartItemsContainer = document.querySelector(".cart-items-container");
 
-        cartUnorederdList.innerHTML = '';
+        cartItemsContainer.innerHTML = '';
         cartItems.forEach(item => {
-            const li =document.createElement("li");
-            li.textContent = item.title;
-            cartUnorederdList.appendChild(li);
-            const p = document.createElement("P");
-            p.textContent = item.count;
-            cartContainer.appendChild(p)
+            cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div class="img-container">
+                            <img src="${item.image}" alt="item photo">
+                        </div>
+                        <div class="item-info">
+                            <p class="item-title">${item.title}</p>
+                            <div class="item-number-price">
+                                <div class="item-count">
+                                    <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                    <p id="numberOfItems">${numberOfOrder}</p>
+                                    <img src="images/add.png" alt="add button" class="add_btn btn">
+                                </div>
+                                <p class="item-price">$${item.price}</p>
+                            </div>
+                        </div>
+                        <div class="lst-col">
+                            <img src="images/close.png" alt="close cart" class="close-btn">
+                            <p class="totalOfItem">$109.95</p>
+                        </div>
+                </div>
+            `;
+
         });
 
         
@@ -79,5 +94,7 @@ window.onscroll = function(){
         nav.style.backgroundColor = "";
     }
 }
+
+console.log(cartItems);
 
 
