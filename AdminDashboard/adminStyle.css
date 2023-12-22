@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+  }
+  body{
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#fff;
+  }
+  .adminContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sidebar{
+  
+    width:30%;
+    border-right: 1px solid #ddd;
+    min-height: 100vh;
+    background-color:#f1f1f1;
+  
+  }
+  .adminContent{
+    width: 90%;
+    background-color:white ;
+  }
+  
+  .btn{
+    padding: 20px;
+    width: 100%;
+    border-radius:none;
+    border:none;
+  
+    background-color: #f1f1f1;
+   text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+    
+  }
+  .btn:hover{
+    background-color: #ccc!important;
+  }
+  .dashtxt{
+
+    width: 80%;
+    align-self: flex-end;
+  }
+  .icon{
+    width: 20%;
+    
+    text-align: left;
+   
+
+  
+
+  }
+  .btnHome{
+    background-color: #4CAF50!important;
+  }
+  .fa-chart-line{
+    
+    color:#232f3e;
+  }
+  .ourDashboard
+  {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+ 
+    border-radius:none;
+    border:none;
+    background-color: #232f3e;
+    text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+
+  }
