@@ -48,7 +48,6 @@ nav img {
 .adminContent {
   margin: 20px;
   width: 90%;
-  /* background-color: #fff; */
 }
 
 .btn {
@@ -56,7 +55,6 @@ nav img {
   width: 100%;
   border-radius: none;
   border: none;
-
   background-color: #f5e6df;
   text-align: left;
   font-size: 15px;
@@ -83,7 +81,6 @@ nav img {
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
-  /* margin-top: 10%; */
   border-radius: none;
   border: none;
   background-color: #f5e6df;
@@ -123,22 +120,22 @@ nav img {
   display: flex;
   justify-content: space-around;
   border: 1px solid #f8ede8;
-  height: 60px;
+  height: auto;
   /* background-color: #dccfc8; */
 }
 .order-details {
-  padding: 5px;
+  padding: 20px;
 }
-.order-details:nth-child(even) {
-  padding-left: 0px;
-}
-.order-card-body {
-  /* display: flex; */
-}
+
 .product-img {
-  height: 100px;
+  height: 260px;
   width: auto;
 }
+.order-contents {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* FOOTER */
 footer {
   color: #fff;
