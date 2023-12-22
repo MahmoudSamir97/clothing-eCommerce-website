@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.svg">
+</head>
+<body>
+    <nav class="main-nav">
+        <img src="images/logo.svg" alt="logo">
+        <img src="images/icons8-cart-96.png" alt="cart" id="cart">
+    </nav>
+    <div class="cart">
+        <div class="relevant">
+            <nav>
+             <p class="cart-title">Shopping Bag (<span id="count">5</span>) </p>
+             <img src="images/right-arrow.png" alt="back arrow" id="back-arrow" class="backArrow">
+            </nav>
+            <hr style="width: 90%; color: #f1f2f3;">
+            <div class="cart-items-container" >
+    
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+                
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+                <!-- single cart item -->
+                <div class="cart-item">
+                    <div class="img-container">
+                        <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="item photo">
+                    </div>
+                    <div class="item-info">
+                        <p class="item-title">Mens Casual Premium Slim Fit T-Shirts </p>
+                        <div class="item-number-price">
+                            <div class="item-count">
+                                <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
+                                <p id="numberOfItems">1</p>
+                                <img src="images/add.png" alt="add button" class="add_btn btn">
+                            </div>
+                            <p class="item-price">$109.95</p>
+                        </div>
+                    </div>
+                    <div class="lst-col">
+                        <img src="images/close.png" alt="close cart" class="close-btn">
+                        <p class="totalOfItem">$109.95</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cart-footer">
+                <div class="cartFooter-firstRow">
+                    <p>Total: $109.95</p>
+                    <img src="images/delete (2).png" alt="deleta all">
+                </div>
+                <div class="cartFooter-btnsContainer">
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="hero_header_container">
+            <p class="trend">new trend</p>
+            <h1 class="hero_header">automn sale stylish <span class="womens-word">womens</span></h1>
+            <p class="discover" >discover more</p>
+        </div>
+        <div class="hero_image">
+            <img src="images/woman_hero.png" alt="hero image" >
+        </div>
+    </div>
+    <div class="products-container" id="main-container">
+        <!-- products goes here dynamically -->
+    </div>
+    <footer>
+        <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
