@@ -112,16 +112,15 @@ nav img {
 
 /* *************Order Cards************* */
 .orders-cards {
-  border: 1px solid #f8ede8;
+  border: 13px solid #f8ede8;
   max-width: 80%;
   margin-left: 10%;
 }
 .order-card-header {
   display: flex;
   justify-content: space-around;
-  border: 1px solid #f8ede8;
+  border-bottom: 13px solid #f8ede8;
   height: auto;
-  /* background-color: #dccfc8; */
 }
 .order-details {
   padding: 20px;
