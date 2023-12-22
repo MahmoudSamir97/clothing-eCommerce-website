@@ -65,6 +65,7 @@ nav img {
   text-align: left;
   font-size: 15px;
   font-weight: 600;
+  cursor: pointer;
 }
 .btn:hover {
   background-color: #dccfc8;
