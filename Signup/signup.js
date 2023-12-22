@@ -10,7 +10,7 @@ const progressText = document.querySelectorAll(".step p");
 const progressCheck = document.querySelectorAll(".step .check");
 const bullet = document.querySelectorAll(".step .bullet");
 const form= document.getElementById("signupForm");
-
+//Hello world
 let fnameField=document.getElementById("fnameField");
 let lnameField=document.getElementById("lnameField");
 const usersArr=[{
