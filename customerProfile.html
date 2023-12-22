@@ -3,13 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
-    <link rel="stylesheet" href="customerProfileStyle.css" />
-    <link rel="icon" type="image/x-icon" href="icons8-cart-48.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Your Profile</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.svg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -17,63 +12,148 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="customerProfile.css" rel="stylesheet" />
   </head>
   <body>
-    <!--*****************Header************************* -->
-    <nav class="navbar">
-      <div class="logo-container">
-        <img src="amazon_logo.png" alt="logo" />
-      </div>
-      <div class="search-container">
-        <input type="text" class="searchInput" id="search-input" />
-        <i class="fa fa-magnifying-glass search-icon"></i>
-      </div>
-      <div class="nav-info-container">
-        <div class="signIn-container">
-          <p class="aside-txt">Hello</p>
-          <a class="hyper-link" href="#" id="signIn-link">Sign In</a>
-        </div>
-        <div class="orders-container">
-          <p class="aside-txt">resturns</p>
-          <a href="#" class="hyper-link" id="order-link">& Orders</a>
-        </div>
-        <div class="cart-container">
-          <i class="fa fa-cart-shopping cart-icon"></i>
-          <p id="card-count" class="count-txt">0</p>
-        </div>
-      </div>
+    <!-- HEADER -->
+    <nav onscroll="handling()">
+      <img src="images/logo.svg" alt="logo" />
+      <img src="images/icons8-cart-96.png" alt="cart" id="cart" />
     </nav>
-    <!-- //////////////////////Body////////////////////// -->
-    <div class="main-container">
-      <div class="orders-btn cell" onclick="showContent('orders')">Orders</div>
-      <div class="profileinfo-btn cell" onclick="showContent('profile-info')">
-        Profile Info
+    <!-- BODY -->
+    <!-- Left Nav -->
+    <div class="adminContainer">
+      <div class="sidebar">
+        <div class="ourDashboard">
+          <div class="icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="dashtxt">Your Profile</div>
+        </div>
+        <button class="btn cell" id="pending" onclick="showContent('orders')">
+          Your Orders
+        </button>
+        <button
+          class="btn cell"
+          id="categories"
+          onclick="showContent('wishlist')"
+        >
+          Wishlist
+        </button>
+        <button
+          class="btn cell"
+          id="products"
+          onclick="showContent('profile-info')"
+        >
+          Profile Information
+        </button>
+        <button class="btn btnHome" id="home">Return to Home Page</button>
       </div>
-      <div class="wishlist-btn cell" onclick="showContent('wishlist')">
-        Wishlist
-      </div>
-      <div class="right-container">
+      <!-- Main Container -->
+      <div class="adminContent">
         <div class="orders-content active-content">
           <!-- Content for Orders -->
           <h2>Your Orders</h2>
+          <br />
+          <br />
           <!-- Add content specific to Orders here -->
           <div class="orders-cards">
             <div class="order-card-header">
-              <div class="order-details">Order Placed:</div>
-              <div class="order-details">10 December 2023</div>
+              <div class="order-details">
+                Order Placed: <br />10 December 2023
+              </div>
 
-              <div class="order-details">Total:</div>
-              <div class="order-details">EGP 116.50</div>
-              <div class="order-details">Order Number:</div>
-              <div class="order-details">123456789</div>
+              <div class="order-details">Total: <br />EGP 116.50</div>
+              <div class="order-details">Order Number: <br />123456789</div>
             </div>
             <div class="order-card-body">
-              <h3>Order Status: Pending</h3>
-              <img
-                class="product-img"
-                src="https://m.media-amazon.com/images/I/61L47z4lY7L._AC_SL1500_.jpg"
-              />
-              <p class="product-name">External Hard Drive Enclosure Casing</p>
+              <h3 class="order-details">Order Status: Pending</h3>
+              <div class="order-contents">
+                <img
+                  class="product-img order-details"
+                  src="images/51kzIp0mUnL._AC_SY741_.jpg"
+                />
+                <div class="order-details">
+                  Mens Casual Premium Slim Fit T-Shirts
+                </div>
+                <div class="order-details">
+                  Quantity: <br />
+                  2
+                </div>
+                <div class="order-details">
+                  Total Price: <br />
+                  $ 109.95
+                </div>
+              </div>
+              <div class="order-contents">
+                <img
+                  class="product-img order-details"
+                  src="images/51kzIp0mUnL._AC_SY741_.jpg"
+                />
+                <div class="order-details">
+                  Mens Casual Premium Slim Fit T-Shirts
+                </div>
+                <div class="order-details">
+                  Quantity: <br />
+                  2
+                </div>
+                <div class="order-details">
+                  Total Price: <br />
+                  $ 109.95
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="orders-cards">
+            <div class="order-card-header">
+              <div class="order-details">
+                Order Placed: <br />5 December 2023
+              </div>
+
+              <div class="order-details">Total: <br />EGP 116.50</div>
+              <div class="order-details">Order Number: <br />123456789</div>
+            </div>
+            <div class="order-card-body">
+              <h3 class="order-details">Order Status: Delivered</h3>
+              <div class="order-contents">
+                <img
+                  class="product-img order-details"
+                  src="images/51kzIp0mUnL._AC_SY741_.jpg"
+                />
+                <div class="order-details">
+                  Mens Casual Premium Slim Fit T-Shirts
+                </div>
+                <div class="order-details">
+                  Quantity: <br />
+                  2
+                </div>
+                <div class="order-details">
+                  Total Price: <br />
+                  $ 109.95
+                </div>
+              </div>
+              <div class="order-contents">
+                <img
+                  class="product-img order-details"
+                  src="images/51kzIp0mUnL._AC_SY741_.jpg"
+                />
+                <div class="order-details">
+                  Mens Casual Premium Slim Fit T-Shirts
+                </div>
+                <div class="order-details">
+                  Quantity: <br />
+                  2
+                </div>
+                <div class="order-details">
+                  Total Price: <br />
+                  $ 109.95
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -91,6 +171,10 @@
         </div>
       </div>
     </div>
+    <!-- FOOTER -->
+    <footer>
+      <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
+    </footer>
     <script src="customerProfile.js"></script>
   </body>
 </html>
