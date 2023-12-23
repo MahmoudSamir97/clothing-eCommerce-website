@@ -9,122 +9,196 @@ const submitBtn = document.querySelector(".submit");
 const progressText = document.querySelectorAll(".step p");
 const progressCheck = document.querySelectorAll(".step .check");
 const bullet = document.querySelectorAll(".step .bullet");
-const form= document.getElementById("signupForm");
+const form = document.getElementById("signupForm");
+const select = document.getElementById("gender");
 //Hello world
-let fnameField=document.getElementById("fnameField");
-let lnameField=document.getElementById("lnameField");
-const usersArr=[{
-  username:"Ammar",
-  password:"Xerox20/30/*_admin"
+let fnameField = document.getElementById("fnameField");
+let lnameField = document.getElementById("lnameField");
+let usersArr = [{
+  username: "Ammar",
+  password: "Xerox20/30/*_admin"
 },
 {
-  username:"Ahmed",
-  password:"Xerox20/40/*"
+  username: "Ahmed",
+  password: "Xerox20/40/*"
 },
 {
-  username:"Abdelaziz",
-  password:"Xerox20/50/*"
+  username: "Abdelaziz",
+  password: "Xerox20/50/*"
 },
 {
-  username:"Ali",
-  password:"Xerox20/60/*"
+  username: "Ali",
+  password: "Xerox20/60/*"
 }
 
 
 ];
-let current = 1;
-form.addEventListener("submit",function(event){
-  event.preventDefault();
-  const password=document.getElementById("password").value;
-  const username=document.getElementById("username").value;
-  if(validatePassword(password)&&validateUsername(username)){
-    if(password.slice(-6)=="_admin"){
 
-      for(let i=0;i<usersArr.length;i++){
-    
-        if((usersArr[i].username==username)&&(usersArr[i].password==password)){
-          console.log("checking");
-          bullet[current - 1].classList.add("active");
-          progressCheck[current - 1].classList.add("active");
-          progressText[current - 1].classList.add("active");
-          current += 1;
-          setTimeout(function(){
-            alert("Your Form Successfully Signed up");
-            window.location.assign("../AdminDashboard/adminDashBoard.html");
-            
-          },800);
+
+//console.log(usersArr);
+let userObj={};
+let current = 1;
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let pass = document.getElementById("password").value;
+  let userName = document.getElementById("username").value;
+  let identicationFlag = 0;
+  if (validatePassword(pass) && validateUsername(userName)) {
+   
+  //event.preventDefault();
+   
+  
+    if (pass.slice(-6) == "_admin") {
+  
+      //event.preventDefault();
+      for (let i = 0; i < usersArr.length; i++) {
+
+        if (!((usersArr[i].username == userName) && (usersArr[i].password == pass))) {
+          //console.log("checking");
          
-        }else{
-          event.preventDefault();
+       //  event.preventDefault();
+          identicationFlag = 0;
+          
+        } else {
+        //  event.preventDefault();
+          identicationFlag = 1;
+          
+        }
+
+      }
+      if (!identicationFlag) {
+
+        let adminObj={};
+       
+        adminObj.username=userName;
+        adminObj.password=pass;
+        adminObj.firstname=document.getElementById("fnameField").value;
+        adminObj.lastname=document.getElementById("lnameField").value;
+        adminObj.email=document.getElementById("email").value;
+        adminObj.phonenumber=document.getElementById("phoneNumber").value;
+        adminObj.BDate=document.getElementById("birthdate").value;
+        adminObj.gender=(gender.options[gender.selectedIndex]).value;
+
+        console.log(adminObj);
+        usersArr.push(adminObj);
+
+        //console.log(usersArr+"after push");
+
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+        setTimeout(function () {
+
+         // window.location.assign("../AdminDashboard/adminDashBoard.html");
+
+        }, 800);
+
+      }else{
+        //event.preventDefault();
+        alert("type another password or username they are duplicated");
+      }
+
+
+    } else {
+      let userFlag=1;
+      for (let i = 0; i < usersArr.length; i++) {
+
+        if (!((usersArr[i].username == userName) && (usersArr[i].password == pass))) {
+        
+        //  event.preventDefault();
+          
+          userFlag = 0;
+          
+
+        } else {
+         // console.log("it is okay");
+      //    event.preventDefault();
+         //alert("try another username or password because they are duplicated");
+        userFlag = 1;
+          
+
         }
       }
-    }else{
-      for(let i=0;i<usersArr.length;i++){
-    
-        if((usersArr[i].username==username)&&(usersArr[i].password==password)){
+      if (!userFlag) {
 
-          bullet[current - 1].classList.add("active");
-          progressCheck[current - 1].classList.add("active");
-          progressText[current - 1].classList.add("active");
-          current += 1;
-          setTimeout(function(){
-            alert("Your Form Successfully Signed up");
-            
-            window.location.assign("../main.html");
-          },800);
-          
-          
-        }else{
-          event.preventDefault();
-        }
+
+        console.log("it is okay user");
+        alert("top");
+       
+        userObj.username=userName;
+        userObj.password=pass;
+        userObj.firstname=document.getElementById("fnameField").value;
+        userObj.lastname=document.getElementById("lnameField").value;
+        userObj.email=document.getElementById("email").value;
+        userObj.phonenumber=document.getElementById("phoneNumber").value;
+        userObj.BDate=document.getElementById("birthdate").value;
+        userObj.gender=(gender.options[gender.selectedIndex]).value;
+        alert(userObj);
+        usersArr.push(userObj);
+        
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+        setTimeout(function () {
+
+          //alert(usersArr);
+
+          window.location.assign("../main.html");
+        }, 800);
+      }else if(userFlag){
+      //  event.preventDefault();
       }
     }
 
-    
+
   }
-})
-nextBtnFirst.addEventListener("click", function(event){
-  let fname=fnameField.value;
-  let lname=lnameField.value;
-  
-if(validateName(fname)&&validateName(lname)){
-  event.preventDefault();
+});
+//usersArr.push({username:"AmmarAhmed",password:'00201144031576'});
+console.log(usersArr);
+nextBtnFirst.addEventListener("click", function (event) {
+  let fname = fnameField.value;
+  let lname = lnameField.value;
 
-  slidePage.style.marginLeft = "-25%";
-  bullet[current - 1].classList.add("active");
-  progressCheck[current - 1].classList.add("active");
-  progressText[current - 1].classList.add("active");
-  current += 1;
- 
-}else{
-  event.preventDefault();
-  alert('pleae enter valid name');
-  let spMessage=document.getElementById("spMessage");
-let validImage=document.getElementById("validImage");
-  spMessage.style.display='inline-block';
+  if (validateName(fname) && validateName(lname)) {
+    event.preventDefault();
 
-  validImage.setAttribute('src','/images/notvalid.png');
-  
-}
+    slidePage.style.marginLeft = "-25%";
+    bullet[current - 1].classList.add("active");
+    progressCheck[current - 1].classList.add("active");
+    progressText[current - 1].classList.add("active");
+    current += 1;
+
+  } else {
+    event.preventDefault();
+    alert('pleae enter valid name');
+    let spMessage = document.getElementById("spMessage");
+    let validImage = document.getElementById("validImage");
+    spMessage.style.display = 'inline-block';
+
+    validImage.setAttribute('src', '/images/notvalid.png');
+
+  }
 
 });
-nextBtnSec.addEventListener("click", function(event){
-  const email=document.getElementById("email").value;
-  const phone=document.getElementById("phoneNumber").value;
-  if(validateEmail(email)&&validateEgyptianPhoneNumber(phone)){
+nextBtnSec.addEventListener("click", function (event) {
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phoneNumber").value;
+  if (validateEmail(email) && validateEgyptianPhoneNumber(phone)) {
     event.preventDefault();
     slidePage.style.marginLeft = "-50%";
     bullet[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
     progressText[current - 1].classList.add("active");
     current += 1;
-  }else{
+  } else {
     event.preventDefault();
     alert("please enter a valid email and Egyption Phone Number");
   }
- 
+
 });
-nextBtnThird.addEventListener("click", function(event){
+nextBtnThird.addEventListener("click", function (event) {
   event.preventDefault();
   slidePage.style.marginLeft = "-75%";
   bullet[current - 1].classList.add("active");
@@ -134,7 +208,7 @@ nextBtnThird.addEventListener("click", function(event){
 });
 
 
-prevBtnSec.addEventListener("click", function(event){
+prevBtnSec.addEventListener("click", function (event) {
   event.preventDefault();
   slidePage.style.marginLeft = "0%";
   bullet[current - 2].classList.remove("active");
@@ -142,7 +216,7 @@ prevBtnSec.addEventListener("click", function(event){
   progressText[current - 2].classList.remove("active");
   current -= 1;
 });
-prevBtnThird.addEventListener("click", function(event){
+prevBtnThird.addEventListener("click", function (event) {
   event.preventDefault();
   slidePage.style.marginLeft = "-25%";
   bullet[current - 2].classList.remove("active");
@@ -150,7 +224,7 @@ prevBtnThird.addEventListener("click", function(event){
   progressText[current - 2].classList.remove("active");
   current -= 1;
 });
-prevBtnFourth.addEventListener("click", function(event){
+prevBtnFourth.addEventListener("click", function (event) {
   event.preventDefault();
   slidePage.style.marginLeft = "-50%";
   bullet[current - 2].classList.remove("active");
@@ -171,45 +245,45 @@ function validateName(name) {
 
 
 
-fnameField.addEventListener("blur",function(){
-  let fnameValue=fnameField.value;
-  let isFnameValid=validateName(fnameValue); 
-  let spMessage=document.getElementById("spMessage");
-  let validImage=document.getElementById("validImage");
-if(isFnameValid){
- 
-    spMessage.style.display='none';
-    
-  
-   // validImage.setAttribute('src','/images/valid.png');
-  fnameField.style.border="1px green solid";
-  
-}else{
-  spMessage.style.display='block';
-  spMessage.innerHTML="*please enter a valid name";
- // validImage.setAttribute('src','/images/notvalid.png');
-  fnameField.style.border="1px red solid";
-}
+fnameField.addEventListener("blur", function () {
+  let fnameValue = fnameField.value;
+  let isFnameValid = validateName(fnameValue);
+  let spMessage = document.getElementById("spMessage");
+  let validImage = document.getElementById("validImage");
+  if (isFnameValid) {
+
+    spMessage.style.display = 'none';
+
+
+    // validImage.setAttribute('src','/images/valid.png');
+    fnameField.style.border = "1px green solid";
+
+  } else {
+    spMessage.style.display = 'block';
+    spMessage.innerHTML = "*please enter a valid name";
+    // validImage.setAttribute('src','/images/notvalid.png');
+    fnameField.style.border = "1px red solid";
+  }
 });
-lnameField.addEventListener("blur",function(){
-  
-  let lnameValue=lnameField.value;
-  let isLnameValid=validateName(lnameValue); 
-  let spMessage2=document.getElementById("spMessage2");
- // let validImage2=document.getElementById("validImage2");
- 
-if(isLnameValid){
-  
-  spMessage2.style.display='none';
- // validImage2.setAttribute('src','/images/valid.png');
-  lnameField.style.border="1px green solid";
-  
-}else{
-  spMessage2.style.display='block';
-  //validImage2.setAttribute('src','/images/notvalid.png');
-  spMessage2.innerHTML="*please enter a valid name";
-  lnameField.style.border="1px red solid";
-}
+lnameField.addEventListener("blur", function () {
+
+  let lnameValue = lnameField.value;
+  let isLnameValid = validateName(lnameValue);
+  let spMessage2 = document.getElementById("spMessage2");
+  // let validImage2=document.getElementById("validImage2");
+
+  if (isLnameValid) {
+
+    spMessage2.style.display = 'none';
+    // validImage2.setAttribute('src','/images/valid.png');
+    lnameField.style.border = "1px green solid";
+
+  } else {
+    spMessage2.style.display = 'block';
+    //validImage2.setAttribute('src','/images/notvalid.png');
+    spMessage2.innerHTML = "*please enter a valid name";
+    lnameField.style.border = "1px red solid";
+  }
 })
 function validateEmail(email) {
   // Regular expression for a simple email validation
@@ -254,8 +328,9 @@ function validatePassword(password) {
   return isLengthValid && hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
 }
 function validateUsername(username) {
- 
+
 
   // Regular expression for username validation
   const usernameRegex = /^[a-zA-Z0-9_-]{3,16}$/;
-  return usernameRegex.test(username);}
+  return usernameRegex.test(username);
+}

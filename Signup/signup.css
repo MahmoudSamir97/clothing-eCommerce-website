@@ -6,22 +6,27 @@
   font-family: 'Roboto', sans-serif;
 }
 body{
+  margin: 0;
+  padding: 0;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   overflow: hidden;
+
+
+  background-image: url("../images/bg_hero.svg");
  
   background-color:#fff;
 }
 ::selection{
   color: #fff;
-  background: #d43f8d;
+  background: #003F62;
 }
 .container{
   width: 330px;
-  background: #F5E6E0;
+  background: #ddd;
   text-align: center;
   border-radius: 5px;
   padding: 50px 35px 10px 35px;
@@ -84,7 +89,7 @@ form .page .field .btnN{
   width: 100%;
   height: calc(100% + 5px);
   border: none;
-  background: #d33f8d;
+  background: #003F62;
   margin-top: -20px;
   border-radius: 5px;
   color: #fff;
@@ -99,7 +104,7 @@ form .page .field .btnN{
   align-items: center;
 }
 form .page .field .btnN:hover{
-  background: #000;
+  background: #EDA415;
 }
 form .page .btns .btnN{
   margin-top: -20px!important;
