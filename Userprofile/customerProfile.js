@@ -22,7 +22,7 @@ var myDiv = document.getElementById("home");
 // Add a click event listener to the div
 myDiv.addEventListener("click", function () {
   // Redirect to the desired page
-  window.location.href = "main.html"; // Replace with your desired URL
+  window.location.href = "../main.html"; // Replace with your desired URL
 });
 /////////////////////////////////////////////////
 const getProducts = async function () {
