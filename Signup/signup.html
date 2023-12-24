@@ -40,18 +40,27 @@
           <div class="check fas fa-check"></div>
         </div>
       </div>
-      <div class="form-outer" id="signupForm">
+      <div class="form-outer" id="signupForm" method="get">
         <form action="#">
           <div class="page slide-page">
             <div class="title">Basic Info:</div>
             <div class="field">
-              <div class="label">First Name</div>
-              <input type="text" id="fnameField">
-              <div><span id="spMessage" class="spMessage"></span></div>
+              <!-- <div class="label">First Name</div> -->
+              <div class="input_area inputFname">
+              <input type="text" id="fnameField" required placeholder="First Name">
+              <i class="icon fa-solid fa-user"></i>
+             <i class="error error-icon fas fa-exclamation-circle"></i>
+            </div>
+              <span id="spMessage" class="spMessage"></span>
             </div>
             <div class="field">
-              <div class="label">Last Name</div>
-              <input type="text" id="lnameField">
+              <!-- <div class="label">Last Name</div> -->
+              <div class="input-area">
+              <input type="text" id="lnameField" required placeholder="Second Name">
+              <i class="icon fa-solid fa-user"></i>
+             <i class="error error-icon fas fa-exclamation-circle"></i>
+            </div>
+            <!-- <div class="error error-txt">Username can't be blank</div> -->
               <span id="spMessage2" class="spMessage"></span>
             </div>
             <div class="field">
@@ -62,15 +71,25 @@
           <div class="page">
             <div class="title">Contact Info:</div>
             <div class="field">
-              <div class="label">Email Address</div>
-              <input type="email" id="email">
+              <!-- <div class="label">Email Address</div> -->
+              <div class="inputEmail">
+              <input type="email" id="email" placeholder="Email Address" required>
+              <i class="iconEmail fa-solid fa-envelope"></i>
+              <i class="error error-icon fas fa-exclamation-circle"></i>
+            </div>
+            <span id="spMessage3" class="spMessage"></span>
             </div>
             <div class="field">
-              <div class="label">Phone Number</div>
-              <input type="text" id="phoneNumber">
-              
+              <!-- <div class="label">Phone Number</div> -->
+              <div class="inputPhone">
+              <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+              <i class="iconPhone fa-solid fa-mobile-screen"></i>
+              <i class="error error-icon fas fa-exclamation-circle"></i>
             </div>
-            <div class="field btns">
+            <span id="spMessage4" class="spMessage"></span>
+            </div>
+            
+            <div class="field btns emailPhone">
               <div class="prev-1 prev btnN">Previous</div>
               <div class="next-1 next btnN">Next</div>
             </div>
@@ -96,17 +115,28 @@
             </div>
           </div>
 
-          <div class="page">
+          <div class="page userDataPage">
             <div class="title">Login Details:</div>
             <div class="field">
-              <div class="label">Username</div>
-              <input type="text" id="username">
+              <!-- <div class="label">Username</div> -->
+              <div class="inputUser">
+              <input type="text" id="username" placeholder="Username">
+              <i class="iconUser fa-solid fa-user"></i>
+              <i class="error error-icon fas fa-exclamation-circle"></i>
+            </div>
+            <span id="spMessage5" class="spMessage"></span>
             </div>
             <div class="field">
-              <div class="label">Password</div>
-              <input type="password" id="password">
+              <!-- <div class="label">Password</div> -->
+              <div class="inputPassword">
+              <input type="password" id="password" placeholder="Password">
+              <i class="iconPass fas fa-lock"></i>
+              <i class="error error-icon fas fa-exclamation-circle"></i>
+
             </div>
-            <div class="field btns">
+            <span id="spMessage6" class="spMessage"></span>
+            </div>
+            <div class="field btns" id="userPass">
               <div class="prev-3 prev btnN">Previous</div>
               <button class="submit btnN">Submit</button>
             </div>

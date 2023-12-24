@@ -1,0 +1,12 @@
+{
+  "name": "clothing-ecommerce-website",
+  "version": "1.0.0",
+  "description": "clothing eCommerce website using HTML CSS and JavaScript using API and local storage",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

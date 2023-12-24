@@ -1,3 +1,37 @@
+const input_area=document.querySelector(".input-area");
+const inputFname=document.querySelector(".inputFname");
+const inputEmail=document.querySelector(".inputEmail");
+const inputPhone=document.querySelector(".inputPhone");
+const inputUser=document.querySelector(".inputUser");
+const inputPassword=document.querySelector(".inputPassword");
+const email=document.getElementById("email");
+const phone=document.getElementById("phoneNumber");
+function readArrayFromLocalStorage(key) {
+  const jsonString = localStorage.getItem(key);
+  return jsonString ? JSON.parse(jsonString) : [];
+}
+
+// Function to write array of objects to localStorage
+function writeArrayToLocalStorage(key, dataArray) {
+  const jsonString = JSON.stringify(dataArray);
+  localStorage.setItem(key, jsonString);
+}
+
+// Function to push an object into the array in localStorage
+function pushObjectToArrayInLocalStorage(key, objectToAdd) {
+  // Read the existing array from localStorage
+  const existingArray = readArrayFromLocalStorage(key);
+
+  // Push the new object into the array
+  existingArray.push(objectToAdd);
+
+  // Write the updated array back to localStorage
+  writeArrayToLocalStorage(key, existingArray);
+}
+
+// Modifying data
+
+
 const slidePage = document.querySelector(".slide-page");
 const nextBtnFirst = document.querySelector(".firstNext");
 const prevBtnSec = document.querySelector(".prev-1");
@@ -33,43 +67,56 @@ let usersArr = [{
 
 
 ];
+const usersArrFromLocal=readArrayFromLocalStorage("users");
 
+// function pushObject(obj){
+//   usersArrFromLocal.push(obj);
+// }
+function isDuplicated(name,pass){
+  let result=false;
+  for(let i=0;i<readArrayFromLocalStorage("users").length;i++){
 
+    if((readArrayFromLocalStorage("users")[i].username==name)&&(readArrayFromLocalStorage("users")[i].password==pass)){
+      result=true;
+      break;
+    }else{
+      result= false;
+    }
+  }
+  return result;
+
+}
+//console.log(isDuplicated("Alaa","Xerox20/60/*"));
 //console.log(usersArr);
 let userObj={};
 let current = 1;
+
+//let isClicked=false;
+writeArrayToLocalStorage("users",usersArr);
 form.addEventListener("submit", function (event) {
+
+ // const existingArray = readArrayFromLocalStorage("users");
+  
+  //console.log(existingArray);
   event.preventDefault();
   let pass = document.getElementById("password").value;
   let userName = document.getElementById("username").value;
-  let identicationFlag = 0;
+ 
   if (validatePassword(pass) && validateUsername(userName)) {
-   
-  //event.preventDefault();
+
    
   
-    if (pass.slice(-6) == "_admin") {
-  
-      //event.preventDefault();
-      for (let i = 0; i < usersArr.length; i++) {
-
-        if (!((usersArr[i].username == userName) && (usersArr[i].password == pass))) {
-          //console.log("checking");
-         
-       //  event.preventDefault();
-          identicationFlag = 0;
-          
-        } else {
-        //  event.preventDefault();
-          identicationFlag = 1;
-          
-        }
-
-      }
-      if (!identicationFlag) {
-
-        let adminObj={};
-       
+    if (!(isDuplicated(userName,pass))) {
+      inputUser.querySelector(".iconUser").style.color='#5372F0';
+      inputUser.querySelector(".error-icon").style.display="none";
+      inputPassword.querySelector(".iconPass").style.color='#5372F0';
+      inputPassword.querySelector(".error-icon").style.display="none";
+      document.getElementById("spMessage5").style.display='none';
+     
+      document.getElementById("spMessage6").style.display='none';
+    
+      //console.log("itis okay");
+      let adminObj={};
         adminObj.username=userName;
         adminObj.password=pass;
         adminObj.firstname=document.getElementById("fnameField").value;
@@ -80,82 +127,54 @@ form.addEventListener("submit", function (event) {
         adminObj.gender=(gender.options[gender.selectedIndex]).value;
 
         console.log(adminObj);
-        usersArr.push(adminObj);
-
-        //console.log(usersArr+"after push");
-
+        //isClicked=true;
+        
+        pushObjectToArrayInLocalStorage("users",adminObj);
         bullet[current - 1].classList.add("active");
         progressCheck[current - 1].classList.add("active");
         progressText[current - 1].classList.add("active");
         current += 1;
         setTimeout(function () {
 
-         // window.location.assign("../AdminDashboard/adminDashBoard.html");
+          if(!(pass.slice(-6)=="_admin")){
+
+            window.location.href="../main.html";
+          }else{
+            
+            window.location.href="../AdminDashboard/adminDashBoard.html";
+        
+          }
+        
 
         }, 800);
 
-      }else{
-        //event.preventDefault();
-        alert("type another password or username they are duplicated");
-      }
 
 
-    } else {
-      let userFlag=1;
-      for (let i = 0; i < usersArr.length; i++) {
+    }else{
 
-        if (!((usersArr[i].username == userName) && (usersArr[i].password == pass))) {
-        
-        //  event.preventDefault();
-          
-          userFlag = 0;
-          
+      inputUser.querySelector(".iconUser").style.color='#dc3545';
+      inputUser.querySelector(".error-icon").style.display="block";
+      inputPassword.querySelector(".iconPass").style.color='#dc3545';
+      inputPassword.querySelector(".error-icon").style.display="block";
+      document.getElementById("spMessage5").style.display='block';
+      document.getElementById("spMessage5").innerHTML = "*try another username because there are account with the same username";
+      document.getElementById("spMessage6").style.display='block';
+      document.getElementById("spMessage6").innerHTML = "*try another username because there are account with the same username";
 
-        } else {
-         // console.log("it is okay");
-      //    event.preventDefault();
-         //alert("try another username or password because they are duplicated");
-        userFlag = 1;
-          
-
-        }
-      }
-      if (!userFlag) {
+      // alert("try another username or password they are duplicated");
+    } 
 
 
-        console.log("it is okay user");
-        alert("top");
-       
-        userObj.username=userName;
-        userObj.password=pass;
-        userObj.firstname=document.getElementById("fnameField").value;
-        userObj.lastname=document.getElementById("lnameField").value;
-        userObj.email=document.getElementById("email").value;
-        userObj.phonenumber=document.getElementById("phoneNumber").value;
-        userObj.BDate=document.getElementById("birthdate").value;
-        userObj.gender=(gender.options[gender.selectedIndex]).value;
-        alert(userObj);
-        usersArr.push(userObj);
-        
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
-        setTimeout(function () {
-
-          //alert(usersArr);
-
-          window.location.assign("../main.html");
-        }, 800);
-      }else if(userFlag){
-      //  event.preventDefault();
-      }
+    
+    }else{
+      alert("they are not match the pattern");
     }
 
 
   }
-});
+);
 //usersArr.push({username:"AmmarAhmed",password:'00201144031576'});
+
 console.log(usersArr);
 nextBtnFirst.addEventListener("click", function (event) {
   let fname = fnameField.value;
@@ -164,29 +183,44 @@ nextBtnFirst.addEventListener("click", function (event) {
   if (validateName(fname) && validateName(lname)) {
     event.preventDefault();
 
+    input_area.querySelector(".icon").style.color='#5372F0';
+    input_area.querySelector(".error-icon").style.display="none";
+    inputFname.querySelector(".icon").style.color='#5372F0';
+    inputFname.querySelector(".error-icon").style.display="none";
     slidePage.style.marginLeft = "-25%";
     bullet[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
     progressText[current - 1].classList.add("active");
     current += 1;
 
+
   } else {
     event.preventDefault();
-    alert('pleae enter valid name');
+    //alert('pleae enter valid name');
+    input_area.querySelector(".icon").style.color='#dc3545';
+    input_area.querySelector(".error-icon").style.display="block";
+    inputFname.querySelector(".icon").style.color='#dc3545';
+    inputFname.querySelector(".error-icon").style.display="block";
     let spMessage = document.getElementById("spMessage");
-    let validImage = document.getElementById("validImage");
-    spMessage.style.display = 'inline-block';
+  
+    document.getElementById("spMessage").style.display='block';
+    document.getElementById("spMessage").innerHTML = "*please enter a valid name";
+    document.getElementById("spMessage2").style.display='block';
+    document.getElementById("spMessage2").innerHTML = "*please enter a valid name";
 
-    validImage.setAttribute('src', '/images/notvalid.png');
+    // spMessage.style.display = 'block';
 
+   
   }
 
 });
 nextBtnSec.addEventListener("click", function (event) {
+  
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phoneNumber").value;
   if (validateEmail(email) && validateEgyptianPhoneNumber(phone)) {
     event.preventDefault();
+   
     slidePage.style.marginLeft = "-50%";
     bullet[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
@@ -194,7 +228,17 @@ nextBtnSec.addEventListener("click", function (event) {
     current += 1;
   } else {
     event.preventDefault();
-    alert("please enter a valid email and Egyption Phone Number");
+
+    inputEmail.querySelector(".iconEmail").style.color='#dc3545';
+    inputEmail.querySelector(".error-icon").style.display="block";
+    inputPhone.querySelector(".iconPhone").style.color='#dc3545';
+    inputPhone.querySelector(".error-icon").style.display="block";
+    document.getElementById("spMessage3").style.display='block';
+    document.getElementById("spMessage3").innerHTML = "*please enter a valid Email";
+    document.getElementById("spMessage4").style.display='block';
+    document.getElementById("spMessage4").innerHTML = "*please enter a Phone Number";
+
+    //alert("please enter a valid email and Egyption Phone Number");
   }
 
 });
@@ -245,27 +289,64 @@ function validateName(name) {
 
 
 
-fnameField.addEventListener("blur", function () {
+fnameField.addEventListener("keyup", function () {
   let fnameValue = fnameField.value;
   let isFnameValid = validateName(fnameValue);
   let spMessage = document.getElementById("spMessage");
-  let validImage = document.getElementById("validImage");
+ 
   if (isFnameValid) {
-
+    inputFname.querySelector(".icon").style.color='#5372F0';
+    inputFname.querySelector(".error-icon").style.display="none";
     spMessage.style.display = 'none';
 
-
-    // validImage.setAttribute('src','/images/valid.png');
     fnameField.style.border = "1px green solid";
 
+
   } else {
+    inputFname.querySelector(".icon").style.color='#dc3545';
+    inputFname.querySelector(".error-icon").style.display="block";
     spMessage.style.display = 'block';
     spMessage.innerHTML = "*please enter a valid name";
     // validImage.setAttribute('src','/images/notvalid.png');
     fnameField.style.border = "1px red solid";
   }
 });
-lnameField.addEventListener("blur", function () {
+phone.addEventListener("keyup",function(){
+  phoneValue=phone.value;
+  let isValidPhone=validateEgyptianPhoneNumber(phoneValue);
+  if(isValidPhone){
+  
+    inputPhone.querySelector(".iconPhone").style.color='#5372F0';
+    inputPhone.querySelector(".error-icon").style.display="none";
+    document.getElementById("spMessage4").style.display='none';
+    
+  }else{
+    inputPhone.querySelector(".iconPhone").style.color='#dc3545';
+    inputPhone.querySelector(".error-icon").style.display="block";
+    document.getElementById("spMessage4").style.display='block';
+    document.getElementById("spMessage4").innerHTML = "*please enter a valid Phone Number";
+  }
+})
+email.addEventListener("keyup",function(){
+  emailValue=email.value;
+  let isValidEmail=validateEmail(emailValue);
+  if(isValidEmail){
+  
+    inputEmail.querySelector(".iconEmail").style.color='#5372F0';
+    inputEmail.querySelector(".error-icon").style.display="none";
+    document.getElementById("spMessage3").style.display='none';
+    
+  }else{
+    inputEmail.querySelector(".iconEmail").style.color='#dc3545';
+    inputEmail.querySelector(".error-icon").style.display="block";
+    document.getElementById("spMessage3").style.display='block';
+    document.getElementById("spMessage3").innerHTML = "*please enter a valid email Number";
+  }
+})
+
+
+
+lnameField.addEventListener("keyup", function () {
 
   let lnameValue = lnameField.value;
   let isLnameValid = validateName(lnameValue);
@@ -274,11 +355,15 @@ lnameField.addEventListener("blur", function () {
 
   if (isLnameValid) {
 
+    input_area.querySelector(".icon").style.color='#5372F0';
+    input_area.querySelector(".error-icon").style.display="none";
     spMessage2.style.display = 'none';
     // validImage2.setAttribute('src','/images/valid.png');
     lnameField.style.border = "1px green solid";
 
   } else {
+    input_area.querySelector(".icon").style.color='#dc3545';
+    input_area.querySelector(".error-icon").style.display="block";
     spMessage2.style.display = 'block';
     //validImage2.setAttribute('src','/images/notvalid.png');
     spMessage2.innerHTML = "*please enter a valid name";
