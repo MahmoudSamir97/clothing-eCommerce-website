@@ -167,7 +167,15 @@ form.addEventListener("submit", function (event) {
 
     
     }else{
-      alert("they are not match the pattern");
+      inputUser.querySelector(".iconUser").style.color='#dc3545';
+      inputUser.querySelector(".error-icon").style.display="block";
+      inputPassword.querySelector(".iconPass").style.color='#dc3545';
+      inputPassword.querySelector(".error-icon").style.display="block";
+      document.getElementById("spMessage5").style.display='block';
+      document.getElementById("spMessage5").innerHTML = "*the username Does'nt match the pattern";
+      document.getElementById("spMessage6").style.display='block';
+      document.getElementById("spMessage6").innerHTML = "*the password Does'nt match the pattern";
+     // alert("they are not match the pattern");
     }
 
 
