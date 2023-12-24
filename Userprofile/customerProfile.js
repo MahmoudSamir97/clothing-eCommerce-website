@@ -22,7 +22,7 @@ var myDiv = document.getElementById("home");
 // Add a click event listener to the div
 myDiv.addEventListener("click", function () {
   // Redirect to the desired page
-  window.location.href = "main.html"; // Replace with your desired URL
+  window.location.href = "../main.html"; // Replace with your desired URL
 });
 /////////////////////////////////////////////////
 const getProducts = async function () {
@@ -40,8 +40,8 @@ const displayOnPage = async () => {
     mainProductContainer.innerHTML += `
               <div class="single-product" data-id="${product.id}">
                   <div class="icons-container">
-                      <img src="images/icons8-add-50.png" alt="add icon" id="add-btn">
-                      <img src="images/eye (1).png" alt="eye icon" id="eye-btn">
+                      <img src="../images/icons8-add-50.png" alt="add icon" id="add-btn">
+                      <img src="../images/eye (1).png" alt="eye icon" id="eye-btn">
                   </div>
                   <div class="product-img-container">
                       <img src="${product.image}" alt="${product.title}">
