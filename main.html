@@ -16,7 +16,7 @@
     <div class="cart">
         <div class="relevant">
             <nav>
-             <p class="cart-title">Shopping Bag (<span id="count">5</span>) </p>
+             <p class="cart-title">Shopping Bag (<span id="count">0</span>) </p>
              <img src="images/right-arrow.png" alt="back arrow" class="backArrow">
             </nav>
             <hr style="width: 90%; color: #f1f2f3;">
@@ -25,7 +25,7 @@
             </div>
             <div class="cart-footer">
                 <div class="cartFooter-firstRow">
-                    <p class="main-total">Total: $109.95</p>
+                    <p class="main-total">Total: $ <span id="total_count">0.00</span></p>
                     <img src="images/delete (2).png" alt="deleta all" class="rubbish-icon">
                 </div>
                 <div class="cartFooter-btnsContainer">
@@ -45,24 +45,40 @@
                 <img src="images/woman_hero.png" alt="hero image" >
             </div>
         </div>
+    <!-- search category -->
+=            <div id="buttons">
+                <button class="button-value" onclick="filterProduct('all')">
+                All
+                </button>
+                <button class="button-value" onclick="filterProduct(`men's clothing`)">
+                men's clothing
+                </button>
+                <button class="button-value" onclick="filterProduct(`women's clothing`)">
+                women's clothing
+                </button>
+                <button class="button-value" onclick="filterProduct('jewelery')">
+                jewelery
+                </button>
+                <button class="button-value" onclick="filterProduct('electronics')">
+                electronics
+                </button>
+            </div>
+        <!-- <div class="category-btns-container">
+            <button id="All" class="category-btn">All</button>
+            <button id="men's clothing" class="category-btn">men's clothing</button>
+            <button id="jewelery" class="category-btn">jewelery</button>
+            <button id="electronics" class="category-btn">electronics</button>
+            <button id="women's clothing" class="category-btn">women's clothing</button>
+        </div> -->
         <div class="products-container" id="main-container">
             <!-- products goes here dynamically -->
         </div>
         <div class="product-description" style="display: none;">
-            <!-- <div class="desc-image-container">
-                <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="product image">
-            </div>
-            <div class="info-container">
-                <h1 class="desc-product-title">Men's Casual Premium Slim Fit T-Shirts</h1>
-                <p class="desc-product-price">$ 22.2</p>
-                <p class="desc-product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nisi illo neque temporibus sequi? Sunt, impedit aperiam deserunt facilis qui praesentium et modi velit tempora aliquam repudiandae suscipit, ab omnis ullam laborum veritatis recusandae sapiente consectetur cupiditate fugit, commodi dolore.</p>
-                <button class="desc-product-AddButton">Add to cart</button>
-            </div> -->
+           <!-- products description goes here dynamically -->
         </div>
     <footer>
         <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
     </footer>
-
     <script src="main.js"></script>
 </body>
 </html>

@@ -29,15 +29,20 @@ window.onscroll = function(){
 // Getting products from API
 const getProducts = async function(){
     const productsArr = [];
-    const response = await fetch("https://fakestoreapi.com/products?limit=10");
+    const response = await fetch("https://fakestoreapi.com/products");
     const data = await response.json();
     productsArr.push(data);
     return productsArr;
 };
+getProducts().then(data=>console.log(data));
 
 // render products from API
 const displayOnPage = async()=>{
+
+    // remove all from cart
+    removeAllFromCart();
     const products = await getProducts(); 
+    console.log(products);
         for (const product of products[0]){
             productsContainer.innerHTML += `
                 <div class="single-product" data-id="${product.id}">
@@ -60,20 +65,32 @@ const displayOnPage = async()=>{
         for(let i =0 ; i < addBtns.length; i++){
             addBtns[i].addEventListener("click", addToCart);
             function addToCart(e){
-                for (const product of products[0]){
-                    const currentelement = e.target.parentElement.parentElement;
-                    if(parseInt(currentelement.getAttribute("data-id")) === product.id){
-                        // let counter = 1;
-                        if(!cartItems.includes(product)){
-                            cartItems.push(product);
-                            updateCartDisplay(counter);
-                        }else{
-                            counter++;
-                            updateCartDisplay(counter);
-                        }
+                const currentelement = e.target.parentElement.parentElement;
+                const currentelementId = parseInt(currentelement.getAttribute("data-id"));
+                const targetElementInArray = products[0].find(element=> element.id === currentelementId);  
+                // // create separate object, can't modify directly on Array object
+                const existInCartItems = cartItems.find(item=> item.id === targetElementInArray.id);
+                if(existInCartItems){
+                    existInCartItems.quantity++;
+                }else{
+                    cartItems.push({...targetElementInArray, quantity:1})
+                }   
+                updateCartDisplay();
 
-                    };
+                /*
+                another way to implement the logic
+                for (const product of products[0]){
+                    const newObj = cartItems.find(item=> item.id === product.id);
+                    if(currentelement.getAttribute("data-id") == product.id){
+                        if(cartItems.some(obj=> obj.id == product.id)){
+                            newObj.quantity++;
+                        }else {
+                            cartItems.push({...product, quantity:1});
+                        } 
+                        updateCartDisplay();
+                    }
                 }
+                */
             }
     };
 
@@ -88,7 +105,7 @@ const displayOnPage = async()=>{
         productsContainer.style.display = "none";
         const currentelement = e.target.parentElement.parentElement;
         const targetProduct = products[0].find( product => product.id === parseInt(currentelement.getAttribute("data-id")));
-        console.log(targetProduct);
+     
         productDescContainer.innerHTML = `
                 <div class="desc-image-container">
                     <img src="${targetProduct.image}" alt="product image">
@@ -97,15 +114,39 @@ const displayOnPage = async()=>{
                     <h1 class="desc-product-title">${targetProduct.title}</h1>
                     <p class="desc-product-price">$ ${targetProduct.price}</p>
                     <p class="desc-product-description">${targetProduct.description}</p>
-                    <button class="desc-product-AddButton">Add to cart</button>
+                    <button class="desc-product-AddButton" data-id="${targetProduct.id}">Add to cart</button>
                 </div>
         `;
+        const addFromDesc = document.querySelector(".desc-product-AddButton");
+        addFromDesc.addEventListener("click",(e)=> {
+            const targetElemId = parseInt(e.target.dataset.id);
+            const targetElemInArray = products[0].find(product=> product.id === targetElemId);
+            const existInCartItems = cartItems.find(item => item.id === targetElemInArray.id);
+            if(existInCartItems){
+                existInCartItems.quantity++;
+            }else{
+                cartItems.push({...targetElemInArray, quantity:1})
+            }
+            updateCartDisplay()
+        });
     }
+  
 }
+    // calcualte price of all items in shopping cart
+    function calcTotal(){
+        const totalHolder = document.getElementById("total_count");
+        const value = cartItems.reduce( (accumulator,current)=>{
+            return accumulator + (current.price * current.quantity) ;
+        },0);
+        totalHolder.innerText = value.toFixed(2);
+    }
 
     // aside cart handler function
-    function updateCartDisplay(numberOfOrder){
+     function updateCartDisplay(){
+        calcTotal();
         const cartItemsContainer = document.querySelector(".cart-items-container");
+        const countHolder = document.getElementById("count");
+        countHolder.textContent = cartItems.length; 
         cartItemsContainer.innerHTML = '';
         cartItems.forEach(item => {
             cartItemsContainer.innerHTML += `
@@ -117,24 +158,77 @@ const displayOnPage = async()=>{
                             <p class="item-title">${item.title}</p>
                             <div class="item-number-price">
                                 <div class="item-count">
-                                    <img src="images/minus-sign.png" alt="minus" class="minus_btn btn ">
-                                    <p id="numberOfItems">${numberOfOrder}</p>
-                                    <img src="images/add.png" alt="add button" class="add_btn btn">
+                                    <img src="images/minus-sign.png" alt="minus" data-id="${item.id}" class="minus_btn btn">
+                                    <p id="numberOfItems">${item.quantity}</p>
+                                    <img src="images/add.png" alt="add button"  data-id="${item.id}" class="add_btn btn">
                                 </div>
                                 <p class="item-price">$${item.price}</p>
                             </div>
                         </div>
                         <div class="lst-col">
-                            <img src="images/close.png" alt="close cart" class="close-btn">
-                            <p class="totalOfItem">$109.95</p>
+                            <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn">
+                            <p class="totalOfItem">$ <span id="itemTotal">${(item.price * item.quantity).toFixed(2)}</span> </p>
                         </div>
                 </div>
             `;
-        });  
+        });
+
+        // increasing and decreasing when clicking on add and minus btn beside item in cart 
+        const minusBtns = document.querySelectorAll(".minus_btn");
+        const addBtns = document.querySelectorAll(".add_btn");
+        minusBtns.forEach(btn=>{
+            btn.addEventListener("click", (e)=>{
+                cartItems.forEach(item=>{
+                    if(parseInt(e.target.dataset.id) === item.id ){
+                        const index = cartItems.indexOf(item);
+                        item.quantity--;
+                        if (item.quantity <= 0){
+                            cartItems.splice(index,1);
+                        }
+                    }
+                    updateCartDisplay();
+                })
+            });
+        });
+        addBtns.forEach(btn=>{
+            btn.addEventListener("click", (e)=>{
+                cartItems.forEach(item=>{
+                    if(parseInt(e.target.dataset.id) === item.id ){
+                        item.quantity++;
+                    }
+                    updateCartDisplay();
+                })
+
+            });
+        });
+
+        // delete item from cart when click on *
+        const deleteBtns = document.querySelectorAll(".close-btn");
+        deleteBtns.forEach(btn=>{
+            btn.addEventListener("click", (e)=>{
+                cartItems.forEach(item=>{
+                    if(parseInt(e.target.dataset.id) === item.id ){
+                        const index = cartItems.indexOf(item);
+                            cartItems.splice(index,1);
+                        }
+                        updateCartDisplay();
+                });
+            });
+        });
+    };
+
+    function removeAllFromCart(){
+        const rubbishIcon = document.querySelector(".rubbish-icon");
+        rubbishIcon.addEventListener("click", ()=>{
+            cartItems = [];
+            updateCartDisplay();
+        })
     }
+
 
     // main function get executed first
     displayOnPage();
+
 
 
 
