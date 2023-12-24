@@ -128,7 +128,7 @@ form.addEventListener("submit", function (event) {
 
         console.log(adminObj);
         //isClicked=true;
-        
+        //the new one
         pushObjectToArrayInLocalStorage("users",adminObj);
         bullet[current - 1].classList.add("active");
         progressCheck[current - 1].classList.add("active");

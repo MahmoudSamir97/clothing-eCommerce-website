@@ -11,7 +11,7 @@ form.onsubmit = (e)=>{
   (uInput.value == "") ? uField.classList.add("shake", "error") : checkUsername();
   (pInput.value == "") ? pField.classList.add("shake", "error") : checkPass();
 
-
+//the new one
 
 
   uInput.onkeyup = ()=>{checkUsername();} //calling checkEmail function on email input keyup

@@ -91,6 +91,7 @@ form input::placeholder{
   color: #bfbfbf;
   font-size: 17px;
 }
+/*the new one*/
 form .field .error-txt{
   color: #dc3545;
   text-align: left;
