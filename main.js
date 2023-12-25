@@ -77,20 +77,7 @@ const displayOnPage = async()=>{
                 }   
                 updateCartDisplay();
 
-                /*
-                another way to implement the logic
-                for (const product of products[0]){
-                    const newObj = cartItems.find(item=> item.id === product.id);
-                    if(currentelement.getAttribute("data-id") == product.id){
-                        if(cartItems.some(obj=> obj.id == product.id)){
-                            newObj.quantity++;
-                        }else {
-                            cartItems.push({...product, quantity:1});
-                        } 
-                        updateCartDisplay();
-                    }
-                }
-                */
+      
             }
     };
 

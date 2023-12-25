@@ -3,36 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Admin Dashboard</title>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="adminStyle.css" rel="stylesheet">
+
 </head>
 <body>
- <div class="adminContainer">
-    <div class="sidebar">
 
-        <div class="ourDashboard">
+   
+    
+    <nav class="main-nav">
+        <div class="container">
+        <img src="../images/logo.svg" alt="logo" class="main-page">
+        
+        <ul class="linksList">     
+            <li class="item"><a class="link" href="../main.html">Logout</a></li>
+            <li class="item"><a class="link" href="#">Category</a></li>
+            <li class="item"><a class="link" href="#">Products</a></li>
+            <li class="item"><a class="link" href="#">Orders</a></li>
+        </ul>
+        <div></div>
+    </div>
+    </nav>
 
-<div class="icon"><i class="fa-solid fa-chart-line" style="color: #ffffff;"></i></div>
-<div class="dashtxt">Dashboard</div>
-
-        </div>
-        <button class="btn btnHome" id="home">Home</button>
-        <button class="btn" id="pending">Pending Orders</button>
-        <button class="btn" id="categories">Categoies</button>
-        <button class="btn" id="products">Products</button>
+    
+    <div class="createProductContainer">
+    
+        <input type="text" placeholder="Enter your product name here">
+        <input type="number" placeholder="Enter the quantity here">
+       <textarea>Type your description here...</textarea>
     
     </div>
-    <div class="adminContent">
-
+   
+   
+    <div class="products-container" id="main-container">   
     </div>
-
-
-
- </div>
-
-
-
-    <script src="dashScript.js"></script>
+    
+    <footer>
+        <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
+    </footer>
+    <script src="adminScript.js"></script>
 </body>
 </html>
