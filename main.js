@@ -3,21 +3,30 @@ let cartItems = [];
 let wishList = [];
 const cartLogoBtn = document.getElementById("cart-logo");
 const mainPageIcon = document.querySelector(".main-page");
-const backArrow = document.querySelector(".backArrow");
+const backArrowBtns = document.querySelectorAll(".backArrow");
 const cartContainer = document.querySelector(".cart");
+const wishListIcon = document.querySelector(".wish-list-icon");
+const wishListContainer = document.querySelector(".wish-list-container");
 const productsContainer = document.getElementById("main-container");
 const productDescContainer = document.querySelector(".product-description");
 const btnsContainer = document.querySelector(".btns-container");
 cartLogoBtn.addEventListener("click",()=>{
-    cartContainer.style.visibility = "visible";
+    cartContainer.style.display = "block";
 });
-backArrow.addEventListener("click", ()=>{
-    cartContainer.style.visibility = "hidden";
-});
+backArrowBtns.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        cartContainer.style.display = "none";
+        wishListContainer.style.display = "none";
+    });
+})
+
 mainPageIcon.addEventListener("click",()=>{
     productDescContainer.style.display = "none";
     productsContainer.style.display = "grid";
     btnsContainer.style.display = "flex";
+});
+wishListIcon.addEventListener("click",()=>{
+    wishListContainer.style.display = "block";
 });
 
 window.onscroll = function(){
@@ -276,12 +285,51 @@ async function addToWishList(e){
 }
 
 function updateWishList(){
-    const wishListContainer = document.getElementById("wish-list-container");
-    wishListContainer.innerHTML = '';
-    wishList.forEach(list=>{
-        wishListContainer.innerHTML += `<p>${list.title} </p>`
+    const itemsContainer = document.querySelector(".wish-list-items");
+    const countHolder = document.getElementById("wish-list-count");
+    countHolder.textContent = wishList.length;
+    itemsContainer.innerHTML = '';
+    wishList.forEach(item=>{
+        itemsContainer.innerHTML += `
+        <div class="cart-item">
+        <div class="img-container">
+            <img src="${item.image}" alt="item photo">
+        </div>
+        <div class="item-info">
+            <p class="item-title">${item.title}</p>
+            <div class="item-number-price">
+            <p class="item-price">$${item.price}</p>
+            </div>
+        </div>
+        <div class="lst-col">
+            <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn close-wish">
+        </div>
+        </div>
+        `
     });
+        // delete item from cart when click on *
+        const deleteBtns = document.querySelector(".close-btn");
+        // deleteBtns.forEach(btn=>{
+            deleteBtns.addEventListener("click", (e)=>{
+                wishList.forEach(item=>{
+                    if(parseInt(e.target.dataset.id) === item.id ){
+                        const index = wishList.indexOf(item);
+                            wishList.splice(index,1);
+                        }
+                        updateWishList();
+                });
+            });
+        // });
 }
+
+
+const orderBtn = document.querySelector(".check-out");
+console.log(orderBtn);
+
+orderBtn.addEventListener("click", ()=>{
+    localStorage.setItem("pending items", JSON.stringify(cartItems));
+    window.location.href = 'AdminDashboard/adminDashBoard.html';
+})
 
 
 
