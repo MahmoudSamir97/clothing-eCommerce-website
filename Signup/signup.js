@@ -63,9 +63,11 @@ let usersArr = [{
 {
   username: "Ali",
   password: "Xerox20/60/*"
+},
+{
+  username: "Mahmoud samir",
+  password: "mahmoudsamir123$$"
 }
-
-
 ];
 const usersArrFromLocal=readArrayFromLocalStorage("users");
 
@@ -138,7 +140,7 @@ form.addEventListener("submit", function (event) {
 
           if(!(pass.slice(-6)=="_admin")){
 
-            window.location.href="../main.html";
+            window.location.href="../Login/login.html";
           }else{
             
             window.location.href="../AdminDashboard/adminDashBoard.html";

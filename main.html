@@ -12,6 +12,11 @@
     <nav class="main-nav">
         <img src="images/logo.svg" alt="logo" class="main-page">
         <img src="images/icons8-cart-96.png" alt="cart" id="cart-logo">
+        <img src="images/wishlist (1).png" alt=" wish list" class="wish-list-icon">
+        <select name="user name" class="user-name-dropDown">
+            <option value="" id="user_name"></option>
+        </select>
+        <button class="log-out-btn">Log out</button>
     </nav>
     <div class="cart">
         <div class="relevant">
@@ -46,36 +51,30 @@
             </div>
         </div>
     <!-- search category -->
-=            <div id="buttons">
-                <button class="button-value" onclick="filterProduct('all')">
-                All
-                </button>
-                <button class="button-value" onclick="filterProduct(`men's clothing`)">
-                men's clothing
-                </button>
-                <button class="button-value" onclick="filterProduct(`women's clothing`)">
-                women's clothing
-                </button>
-                <button class="button-value" onclick="filterProduct('jewelery')">
-                jewelery
-                </button>
-                <button class="button-value" onclick="filterProduct('electronics')">
-                electronics
-                </button>
-            </div>
-        <!-- <div class="category-btns-container">
-            <button id="All" class="category-btn">All</button>
-            <button id="men's clothing" class="category-btn">men's clothing</button>
-            <button id="jewelery" class="category-btn">jewelery</button>
-            <button id="electronics" class="category-btn">electronics</button>
-            <button id="women's clothing" class="category-btn">women's clothing</button>
-        </div> -->
+        <div id="buttons" class="btns-container">
+            <button class="button-value" onclick="filterProduct('all')">
+            All
+            </button>
+            <button class="button-value" onclick="filterProduct(`men's clothing`)">
+            men's clothing
+            </button>
+            <button class="button-value" onclick="filterProduct(`women's clothing`)">
+            women's clothing
+            </button>
+            <button class="button-value" onclick="filterProduct('jewelery')">
+            jewelery
+            </button>
+            <button class="button-value" onclick="filterProduct('electronics')">
+            electronics
+            </button>
+        </div>
         <div class="products-container" id="main-container">
             <!-- products goes here dynamically -->
         </div>
         <div class="product-description" style="display: none;">
            <!-- products description goes here dynamically -->
         </div>
+        <div id="wish-list-container"></div>
     <footer>
         <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
     </footer>

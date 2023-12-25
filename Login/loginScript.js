@@ -1,9 +1,16 @@
 const form = document.querySelector("form");
-uField = form.querySelector(".username"),
+uField = form.querySelector(".username");
+console.log(uField);
 
 uInput = uField.querySelector("input"),
+console.log(uInput);
+
 pField = form.querySelector(".password"),
+console.log(pField);
+
 pInput = pField.querySelector("input");
+console.log(pInput);
+
 
 form.onsubmit = (e)=>{
   e.preventDefault(); //preventing from form submitting
@@ -52,9 +59,10 @@ form.onsubmit = (e)=>{
    // window.location.href = "/Login/login.html" //redirecting user to the specified url which is inside action attribute of form tag
   }else{
     if((pInput.value.slice(-6)=="_admin")&&checkUsernamePassword(uInput.value,pInput.value)){
-
+      localStorage.setItem("user name", pInput.value);
       window.location.href="/AdminDashboard/adminDashBoard.html";
     }else{
+      localStorage.setItem("user name", uInput.value);
       window.location.href = "/main.html";
     }
     pField.classList.remove("error");
