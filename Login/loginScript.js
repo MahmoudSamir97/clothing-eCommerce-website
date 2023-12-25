@@ -1,26 +1,13 @@
 const form = document.querySelector("form");
 uField = form.querySelector(".username");
-console.log(uField);
-
 uInput = uField.querySelector("input"),
-console.log(uInput);
-
 pField = form.querySelector(".password"),
-console.log(pField);
-
 pInput = pField.querySelector("input");
-console.log(pInput);
-
-
 form.onsubmit = (e)=>{
   e.preventDefault(); //preventing from form submitting
   //if email and password is blank then add shake class in it else call specified function
   (uInput.value == "") ? uField.classList.add("shake", "error") : checkUsername();
   (pInput.value == "") ? pField.classList.add("shake", "error") : checkPass();
-
-//the new one
-
-
   uInput.onkeyup = ()=>{checkUsername();} //calling checkEmail function on email input keyup
   pInput.onkeyup = ()=>{checkPass();} //calling checkPassword function on pass input keyup
 

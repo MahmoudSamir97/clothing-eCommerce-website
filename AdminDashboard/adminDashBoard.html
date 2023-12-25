@@ -10,39 +10,55 @@
 
 </head>
 <body>
-
-   
-    
     <nav class="main-nav">
-        <div class="container">
         <img src="../images/logo.svg" alt="logo" class="main-page">
-        
         <ul class="linksList">     
             <li class="item"><a class="link" href="../main.html">Logout</a></li>
             <li class="item"><a class="link" href="#">Category</a></li>
             <li class="item"><a class="link" href="#">Products</a></li>
             <li class="item"><a class="link" href="#">Orders</a></li>
         </ul>
-        <div></div>
-    </div>
     </nav>
-<!-- mmmmm -->
-    
+
+    <div class="order-container">
+        <h1>Pendig Orders...</h1>
+        <h3 id="user-name"></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th >Item ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="orders-container">
+                <!-- orders render here dynamically dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <div class="btns-container">
+        <button>Confirm</button>
+        <button>Reject</button>
+    </div>
+
+<!--     
     <div class="createProductContainer">
     
         <input type="text" placeholder="Enter your product name here">
         <input type="number" placeholder="Enter the quantity here">
        <textarea>Type your description here...</textarea>
     
-    </div>
+    </div> -->
    
    
-    <div class="products-container" id="main-container">   
-    </div>
+    <!-- <div class="products-container" id="main-container">   
+    </div> -->
     
-    <footer>
+    <!-- <footer>
         <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
-    </footer>
+    </footer> -->
     <script src="adminScript.js"></script>
 </body>
 </html>

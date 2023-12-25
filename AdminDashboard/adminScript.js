@@ -38,29 +38,29 @@ const getProducts = async function(){
 getProducts().then(data=>writeArrayToLocalStorage("products",data[0]));
 
 
-function displayProducts(){
+// function displayProducts(){
 
-   const products= readArrayFromLocalStorage("products");
-   for (const product of products){
-    productsContainer.innerHTML += `
-        <div class="single-product" data-id="${product.id}">
-            <div class="icons-container">
+//    const products= readArrayFromLocalStorage("products");
+//    for (const product of products){
+//     productsContainer.innerHTML += `
+//         <div class="single-product" data-id="${product.id}">
+//             <div class="icons-container">
                 
-                <img src="../images/dashboardimages/icons8-update-48.png" alt="add icon" id="update-btn">
-                <img src="../images/dashboardimages/icons8-delete-64.png" alt="eye icon" id="delete-btn">
-            </div>
-            <div class="product-img-container">
-                <img src="${product.image}" alt="${product.title}">
-            </div>
-            <p class="product-category">${product.category}</p>
-            <p class="product-title">${product.title}</p>
-            <p class="product-price">$ ${product.price}</p>
-        </div>
-    `;
-} 
+//                 <img src="../images/dashboardimages/icons8-update-48.png" alt="add icon" id="update-btn">
+//                 <img src="../images/dashboardimages/icons8-delete-64.png" alt="eye icon" id="delete-btn">
+//             </div>
+//             <div class="product-img-container">
+//                 <img src="${product.image}" alt="${product.title}">
+//             </div>
+//             <p class="product-category">${product.category}</p>
+//             <p class="product-title">${product.title}</p>
+//             <p class="product-price">$ ${product.price}</p>
+//         </div>
+//     `;
+// } 
 
-}
-displayProducts();
+// }
+// displayProducts();
 
 const deleteBtns = document.querySelectorAll("#delete-btn");
 //var theNewOne=[];
@@ -101,4 +101,25 @@ for(let i =0 ; i < deleteBtns.length; i++){
   
 };
 
-//djdjsdsjd
+
+// Mahmoud samir
+const renderPendingOredrs = ()=>{
+    const userNameContainer = document.getElementById("user-name");
+    const userName = localStorage.getItem("user name");
+    const ordersContainer = document.getElementById("orders-container");
+    const userPendingOrders = JSON.parse(localStorage.getItem("pending items"));
+    userPendingOrders.forEach(item => {
+        ordersContainer.innerHTML += `
+        <tr>
+            <td class="center">${item.id}</td>
+            <td>${item.title}</td>
+            <td><img class="order-img" src="${item.image}" alt="order image"></td>
+            <td>$ ${item.price}</td>
+            <td class="center">${item.quantity}</td>
+        </tr>
+        `
+    });
+    userNameContainer.textContent = userName;
+}
+renderPendingOredrs()
+
