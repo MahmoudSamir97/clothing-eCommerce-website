@@ -169,14 +169,36 @@ form.addEventListener("submit", function (event) {
 
     
     }else{
-      inputUser.querySelector(".iconUser").style.color='#dc3545';
-      inputUser.querySelector(".error-icon").style.display="block";
-      inputPassword.querySelector(".iconPass").style.color='#dc3545';
-      inputPassword.querySelector(".error-icon").style.display="block";
-      document.getElementById("spMessage5").style.display='block';
-      document.getElementById("spMessage5").innerHTML = "*the username Does'nt match the pattern";
-      document.getElementById("spMessage6").style.display='block';
-      document.getElementById("spMessage6").innerHTML = "*the password Does'nt match the pattern";
+      
+      
+      
+      if(validateUsername(userName)){
+
+        inputUser.querySelector(".iconUser").style.color='#5372F0';
+        inputUser.querySelector(".error-icon").style.display="none";
+        document.getElementById("spMessage5").style.display='none';
+        
+        
+        
+       
+      }else{
+        inputPassword.querySelector(".iconPass").style.color='#dc3545';
+        inputPassword.querySelector(".error-icon").style.display="block";
+        document.getElementById("spMessage5").style.display='block';
+        document.getElementById("spMessage5").innerHTML = "*the user name must be more than 3 letters";
+      }
+      if(validatePassword(pass)){
+        inputPassword.querySelector(".iconPass").style.color='#5372F0';
+        inputPassword.querySelector(".error-icon").style.display="none";
+        document.getElementById("spMessage6").style.display='none';
+      }else{
+        inputPassword.querySelector(".iconPass").style.color='#dc3545';
+        inputPassword.querySelector(".error-icon").style.display="block";
+        document.getElementById("spMessage6").style.display='block';
+        document.getElementById("spMessage6").innerHTML = "*please match this pattern Aa1/*#$%";
+      }
+      
+     
      // alert("they are not match the pattern");
     }
 
@@ -230,7 +252,12 @@ nextBtnSec.addEventListener("click", function (event) {
   const phone = document.getElementById("phoneNumber").value;
   if (validateEmail(email) && validateEgyptianPhoneNumber(phone)) {
     event.preventDefault();
-   
+    inputEmail.querySelector(".iconEmail").style.color='#5372F0';
+    inputEmail.querySelector(".error-icon").style.display="none";
+    inputPhone.querySelector(".iconPhone").style.color='#dc3545';
+    inputPhone.querySelector(".error-icon").style.display="none";
+    document.getElementById("spMessage3").style.display="none";
+    document.getElementById("spMessage4").style.display="none";
     slidePage.style.marginLeft = "-50%";
     bullet[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
@@ -328,12 +355,12 @@ phone.addEventListener("keyup",function(){
   
     inputPhone.querySelector(".iconPhone").style.color='#5372F0';
     inputPhone.querySelector(".error-icon").style.display="none";
-    document.getElementById("spMessage4").style.display='none';
+    document.getElementById("spMessage4").style.display="none";
     
   }else{
     inputPhone.querySelector(".iconPhone").style.color='#dc3545';
     inputPhone.querySelector(".error-icon").style.display="block";
-    document.getElementById("spMessage4").style.display='block';
+    document.getElementById("spMessage4").style.display="block";
     document.getElementById("spMessage4").innerHTML = "*please enter a valid Phone Number";
   }
 })
@@ -344,7 +371,7 @@ email.addEventListener("keyup",function(){
   
     inputEmail.querySelector(".iconEmail").style.color='#5372F0';
     inputEmail.querySelector(".error-icon").style.display="none";
-    document.getElementById("spMessage3").style.display='none';
+    document.getElementById("spMessage3").style.display="none";
     
   }else{
     inputEmail.querySelector(".iconEmail").style.color='#dc3545';
