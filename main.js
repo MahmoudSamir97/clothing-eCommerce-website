@@ -6,10 +6,14 @@ const mainPageIcon = document.querySelector(".main-page");
 const backArrowBtns = document.querySelectorAll(".backArrow");
 const cartContainer = document.querySelector(".cart");
 const wishListIcon = document.querySelector(".wish-list-icon");
+const cartItemsContainer = document.querySelector(".cart-items-container");
+const pendingItems = JSON.parse(localStorage.getItem("pending items"));
 const wishListContainer = document.querySelector(".wish-list-container");
 const productsContainer = document.getElementById("main-container");
 const productDescContainer = document.querySelector(".product-description");
 const btnsContainer = document.querySelector(".btns-container");
+const statusBtn = document.querySelector(".status-btn");
+statusBtn.textContent = localStorage.getItem("order status");
 cartLogoBtn.addEventListener("click",()=>{
     cartContainer.style.display = "block";
 });
@@ -55,40 +59,15 @@ const displayOnPage = async()=>{
     attacheventHandler();
     removeAllFromCart();
     renderUserName();
+    renderCartItems(pendingItems);
+    calcTotal(pendingItems);
 }
 
     // aside cart handler function
      function updateCartDisplay(){
-        calcTotal();
-        const cartItemsContainer = document.querySelector(".cart-items-container");
-        const countHolder = document.getElementById("count");
-        countHolder.textContent = cartItems.length; 
-        cartItemsContainer.innerHTML = '';
-        cartItems.forEach(item => {
-            cartItemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <div class="img-container">
-                            <img src="${item.image}" alt="item photo">
-                        </div>
-                        <div class="item-info">
-                            <p class="item-title">${item.title}</p>
-                            <div class="item-number-price">
-                                <div class="item-count">
-                                    <img src="images/minus-sign.png" alt="minus" data-id="${item.id}" class="minus_btn btn">
-                                    <p id="numberOfItems">${item.quantity}</p>
-                                    <img src="images/add.png" alt="add button"  data-id="${item.id}" class="add_btn btn">
-                                </div>
-                                <p class="item-price">$${item.price}</p>
-                            </div>
-                        </div>
-                        <div class="lst-col">
-                            <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn">
-                            <p class="totalOfItem">$ <span id="itemTotal">${(item.price * item.quantity).toFixed(2)}</span> </p>
-                        </div>
-                </div>
-            `;
-        });
-
+         renderCartItems(cartItems);
+         calcTotal(cartItems);
+         statusBtn.textContent = "status";
         // increasing and decreasing when clicking on add and minus btn beside item in cart 
         const minusBtns = document.querySelectorAll(".minus_btn");
         const addBtns = document.querySelectorAll(".add_btn");
@@ -181,6 +160,36 @@ const displayOnPage = async()=>{
         }  
     };
 
+  function  renderCartItems(arr){
+    const countHolder = document.getElementById("count");
+    countHolder.textContent = arr.length; 
+    cartItemsContainer.innerHTML = '';
+        arr.forEach(item=>{
+            cartItemsContainer.innerHTML += `
+            <div class="cart-item">
+                <div class="img-container">
+                    <img src="${item.image}" alt="item photo">
+                </div>
+                <div class="item-info">
+                    <p class="item-title">${item.title}</p>
+                    <div class="item-number-price">
+                        <div class="item-count">
+                            <img src="images/minus-sign.png" alt="minus" data-id="${item.id}" class="minus_btn btn">
+                            <p id="numberOfItems">${item.quantity}</p>
+                            <img src="images/add.png" alt="add button"  data-id="${item.id}" class="add_btn btn">
+                        </div>
+                        <p class="item-price">$${item.price}</p>
+                    </div>
+                </div>
+                <div class="lst-col">
+                    <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn">
+                    <p class="totalOfItem">$ <span id="itemTotal">${(item.price * item.quantity).toFixed(2)}</span> </p>
+                </div>
+        </div>
+        `;
+        });
+    }
+
 // add and eye icon handler function
 async function attacheventHandler(){
     const products = await getProducts(); 
@@ -243,9 +252,9 @@ function showingTheCart(e){
 };
 
 // calcualte price of all items in shopping cart
-function calcTotal(){
+function calcTotal(arr){
     const totalHolder = document.getElementById("total_count");
-    const value = cartItems.reduce( (accumulator,current)=>{
+    const value = arr.reduce( (accumulator,current)=>{
         return accumulator + (current.price * current.quantity) ;
     },0);
     totalHolder.innerText = value.toFixed(2);
@@ -313,13 +322,16 @@ function updateWishList(){
                 });
             }
 }
-
-
 const orderBtn = document.querySelector(".check-out");
 orderBtn.addEventListener("click", ()=>{
     localStorage.setItem("pending items", JSON.stringify(cartItems));
+    localStorage.setItem("order status", "pending..");
     window.location.href = 'AdminDashboard/adminDashBoard.html';
 })
+
+
+
+
 
 
 

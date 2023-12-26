@@ -40,7 +40,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 80vh;
+    height: 100vh;
     width: 100%;
 }
 .hero_header_container{
@@ -424,7 +424,6 @@ footer{
     width: 30px;
     height: 30px;
   }
-
   .user-name-dropDown{
     position: absolute;
     left: 14rem;
@@ -458,14 +457,12 @@ footer{
     background-color: #fff;
     z-index: 1;
   }
-
   .wish-list-container  nav{
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.5rem 1rem;
   }
-
   .wish-list-items{
     padding: 0.25rem 2rem;
   }

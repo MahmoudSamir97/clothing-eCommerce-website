@@ -1,3 +1,4 @@
+//  variable declaration
 const input_area=document.querySelector(".input-area");
 const inputFname=document.querySelector(".inputFname");
 const inputEmail=document.querySelector(".inputEmail");
@@ -6,6 +7,44 @@ const inputUser=document.querySelector(".inputUser");
 const inputPassword=document.querySelector(".inputPassword");
 const email=document.getElementById("email");
 const phone=document.getElementById("phoneNumber");
+const slidePage = document.querySelector(".slide-page");
+const nextBtnFirst = document.querySelector(".firstNext");
+const prevBtnSec = document.querySelector(".prev-1");
+const nextBtnSec = document.querySelector(".next-1");
+const prevBtnThird = document.querySelector(".prev-2");
+const nextBtnThird = document.querySelector(".next-2");
+const prevBtnFourth = document.querySelector(".prev-3");
+const submitBtn = document.querySelector(".submit");
+const progressText = document.querySelectorAll(".step p");
+const progressCheck = document.querySelectorAll(".step .check");
+const bullet = document.querySelectorAll(".step .bullet");
+const form = document.getElementById("signupForm");
+const select = document.getElementById("gender");
+let fnameField = document.getElementById("fnameField");
+let lnameField = document.getElementById("lnameField");
+let usersArr = [
+  {
+    username: "Admin",
+    password: "Xerox20/30/*_admin"
+  },
+  {
+    username: "Mahmoud samir",
+    password: "mahmoudsamir123$$"
+  },
+  {
+    username: "Ahmed",
+    password: "Xerox20/40/*"
+  },
+  {
+    username: "Abdelaziz",
+    password: "Xerox20/50/*"
+  },
+  {
+    username: "Ali",
+    password: "Xerox20/60/*"
+  }
+  ];
+
 function readArrayFromLocalStorage(key) {
   const jsonString = localStorage.getItem(key);
   return jsonString ? JSON.parse(jsonString) : [];
@@ -29,51 +68,9 @@ function pushObjectToArrayInLocalStorage(key, objectToAdd) {
   writeArrayToLocalStorage(key, existingArray);
 }
 
-// Modifying data
 
-
-const slidePage = document.querySelector(".slide-page");
-const nextBtnFirst = document.querySelector(".firstNext");
-const prevBtnSec = document.querySelector(".prev-1");
-const nextBtnSec = document.querySelector(".next-1");
-const prevBtnThird = document.querySelector(".prev-2");
-const nextBtnThird = document.querySelector(".next-2");
-const prevBtnFourth = document.querySelector(".prev-3");
-const submitBtn = document.querySelector(".submit");
-const progressText = document.querySelectorAll(".step p");
-const progressCheck = document.querySelectorAll(".step .check");
-const bullet = document.querySelectorAll(".step .bullet");
-const form = document.getElementById("signupForm");
-const select = document.getElementById("gender");
-//Hello world
-let fnameField = document.getElementById("fnameField");
-let lnameField = document.getElementById("lnameField");
-let usersArr = [{
-  username: "Ammar",
-  password: "Xerox20/30/*_admin"
-},
-{
-  username: "Ahmed",
-  password: "Xerox20/40/*"
-},
-{
-  username: "Abdelaziz",
-  password: "Xerox20/50/*"
-},
-{
-  username: "Ali",
-  password: "Xerox20/60/*"
-},
-{
-  username: "Mahmoud samir",
-  password: "mahmoudsamir123$$"
-}
-];
 const usersArrFromLocal=readArrayFromLocalStorage("users");
 
-// function pushObject(obj){
-//   usersArrFromLocal.push(obj);
-// }
 function isDuplicated(name,pass){
   let result=false;
   for(let i=0;i<readArrayFromLocalStorage("users").length;i++){
@@ -86,20 +83,13 @@ function isDuplicated(name,pass){
     }
   }
   return result;
-
 }
-//console.log(isDuplicated("Alaa","Xerox20/60/*"));
-//console.log(usersArr);
+
 let userObj={};
 let current = 1;
 
-//let isClicked=false;
 writeArrayToLocalStorage("users",usersArr);
 form.addEventListener("submit", function (event) {
-
- // const existingArray = readArrayFromLocalStorage("users");
-  
-  //console.log(existingArray);
   event.preventDefault();
   let pass = document.getElementById("password").value;
   let userName = document.getElementById("username").value;
@@ -117,8 +107,7 @@ form.addEventListener("submit", function (event) {
      
       document.getElementById("spMessage6").style.display='none';
     
-      //console.log("itis okay");
-      let adminObj={};
+     let adminObj={};
         adminObj.username=userName;
         adminObj.password=pass;
         adminObj.firstname=document.getElementById("fnameField").value;
@@ -127,9 +116,6 @@ form.addEventListener("submit", function (event) {
         adminObj.phonenumber=document.getElementById("phoneNumber").value;
         adminObj.BDate=document.getElementById("birthdate").value;
         adminObj.gender=(gender.options[gender.selectedIndex]).value;
-
-        console.log(adminObj);
-        //isClicked=true;
         //the new one
         pushObjectToArrayInLocalStorage("users",adminObj);
         bullet[current - 1].classList.add("active");
@@ -137,23 +123,13 @@ form.addEventListener("submit", function (event) {
         progressText[current - 1].classList.add("active");
         current += 1;
         setTimeout(function () {
-
           if(!(pass.slice(-6)=="_admin")){
-
             window.location.href="../Login/login.html";
-          }else{
-            
+          }else{ 
             window.location.href="../AdminDashboard/adminDashBoard.html";
-        
           }
-        
-
         }, 800);
-
-
-
     }else{
-
       inputUser.querySelector(".iconUser").style.color='#dc3545';
       inputUser.querySelector(".error-icon").style.display="block";
       inputPassword.querySelector(".iconPass").style.color='#dc3545';
@@ -162,25 +138,14 @@ form.addEventListener("submit", function (event) {
       document.getElementById("spMessage5").innerHTML = "*try another username because there are account with the same username";
       document.getElementById("spMessage6").style.display='block';
       document.getElementById("spMessage6").innerHTML = "*try another username because there are account with the same username";
-
-      // alert("try another username or password they are duplicated");
     } 
-
-
-    
-    }else{
-      
-      
-      
+    }else{ 
       if(validateUsername(userName)){
 
         inputUser.querySelector(".iconUser").style.color='#5372F0';
         inputUser.querySelector(".error-icon").style.display="none";
         document.getElementById("spMessage5").style.display='none';
-        
-        
-        
-       
+
       }else{
         inputPassword.querySelector(".iconPass").style.color='#dc3545';
         inputPassword.querySelector(".error-icon").style.display="block";
@@ -197,15 +162,9 @@ form.addEventListener("submit", function (event) {
         document.getElementById("spMessage6").style.display='block';
         document.getElementById("spMessage6").innerHTML = "*please match this pattern Aa1/*#$%";
       }
-      
-     
-     // alert("they are not match the pattern");
-    }
-
-
+         }
   }
 );
-//usersArr.push({username:"AmmarAhmed",password:'00201144031576'});
 
 console.log(usersArr);
 nextBtnFirst.addEventListener("click", function (event) {
@@ -224,11 +183,8 @@ nextBtnFirst.addEventListener("click", function (event) {
     progressCheck[current - 1].classList.add("active");
     progressText[current - 1].classList.add("active");
     current += 1;
-
-
   } else {
     event.preventDefault();
-    //alert('pleae enter valid name');
     input_area.querySelector(".icon").style.color='#dc3545';
     input_area.querySelector(".error-icon").style.display="block";
     inputFname.querySelector(".icon").style.color='#dc3545';
@@ -239,15 +195,9 @@ nextBtnFirst.addEventListener("click", function (event) {
     document.getElementById("spMessage").innerHTML = "*please enter a valid name";
     document.getElementById("spMessage2").style.display='block';
     document.getElementById("spMessage2").innerHTML = "*please enter a valid name";
-
-    // spMessage.style.display = 'block';
-
-   
   }
-
 });
 nextBtnSec.addEventListener("click", function (event) {
-  
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phoneNumber").value;
   if (validateEmail(email) && validateEgyptianPhoneNumber(phone)) {
@@ -274,10 +224,7 @@ nextBtnSec.addEventListener("click", function (event) {
     document.getElementById("spMessage3").innerHTML = "*please enter a valid Email";
     document.getElementById("spMessage4").style.display='block';
     document.getElementById("spMessage4").innerHTML = "*please enter a Phone Number";
-
-    //alert("please enter a valid email and Egyption Phone Number");
   }
-
 });
 nextBtnThird.addEventListener("click", function (event) {
   event.preventDefault();
@@ -287,8 +234,6 @@ nextBtnThird.addEventListener("click", function (event) {
   progressText[current - 1].classList.add("active");
   current += 1;
 });
-
-
 prevBtnSec.addEventListener("click", function (event) {
   event.preventDefault();
   slidePage.style.marginLeft = "0%";
@@ -314,17 +259,12 @@ prevBtnFourth.addEventListener("click", function (event) {
   current -= 1;
 });
 
-
-
 function validateName(name) {
   // Define the regex pattern for a basic name validation
   var nameRegex = /^[a-zA-Z]{3,}$/;
-
   // Test the input against the regex pattern
   return nameRegex.test(name);
 }
-
-
 
 fnameField.addEventListener("keyup", function () {
   let fnameValue = fnameField.value;
@@ -337,8 +277,6 @@ fnameField.addEventListener("keyup", function () {
     spMessage.style.display = 'none';
 
     fnameField.style.border = "1px green solid";
-
-
   } else {
     inputFname.querySelector(".icon").style.color='#dc3545';
     inputFname.querySelector(".error-icon").style.display="block";
@@ -389,9 +327,7 @@ lnameField.addEventListener("keyup", function () {
   let isLnameValid = validateName(lnameValue);
   let spMessage2 = document.getElementById("spMessage2");
   // let validImage2=document.getElementById("validImage2");
-
   if (isLnameValid) {
-
     input_area.querySelector(".icon").style.color='#5372F0';
     input_area.querySelector(".error-icon").style.display="none";
     spMessage2.style.display = 'none';
@@ -450,8 +386,6 @@ function validatePassword(password) {
   return isLengthValid && hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
 }
 function validateUsername(username) {
-
-
   // Regular expression for username validation
   const usernameRegex = /^[a-zA-Z0-9_-]{3,16}$/;
   return usernameRegex.test(username);

@@ -1,4 +1,3 @@
-
 const productsContainer = document.getElementById("main-container");
 window.onscroll = function(){
     const nav = document.querySelector("nav");
@@ -63,7 +62,6 @@ getProducts().then(data=>writeArrayToLocalStorage("products",data[0]));
 // displayProducts();
 
 const deleteBtns = document.querySelectorAll("#delete-btn");
-//var theNewOne=[];
 const productsArrFromLocalStorage=readArrayFromLocalStorage("products");
 writeArrayToLocalStorage("products",productsArrFromLocalStorage);
 function deleteProduct(e){
@@ -103,8 +101,12 @@ for(let i =0 ; i < deleteBtns.length; i++){
 
 
 // Mahmoud samir
+const confirmBtn = document.querySelector(".confirm-btn");
+const rejectBtn = document.querySelector(".reject-btn");
 const renderPendingOredrs = ()=>{
+    const adminNameContainer = document.getElementById("admin-name");
     const userNameContainer = document.getElementById("user-name");
+    const adminName = localStorage.getItem("admin name");
     const userName = localStorage.getItem("user name");
     const ordersContainer = document.getElementById("orders-container");
     const userPendingOrders = JSON.parse(localStorage.getItem("pending items"));
@@ -119,7 +121,14 @@ const renderPendingOredrs = ()=>{
         </tr>
         `
     });
+    adminNameContainer.textContent = adminName;
     userNameContainer.textContent = userName;
-}
-renderPendingOredrs()
+};
+renderPendingOredrs();
+confirmBtn.addEventListener("click", ()=>{
+    localStorage.setItem("order status", "confirmed");
+});
+rejectBtn.addEventListener("click", ()=>{
+    localStorage.setItem("order status", "rejected");
+});
 

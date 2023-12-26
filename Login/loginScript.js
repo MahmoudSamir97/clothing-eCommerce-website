@@ -46,7 +46,7 @@ form.onsubmit = (e)=>{
    // window.location.href = "/Login/login.html" //redirecting user to the specified url which is inside action attribute of form tag
   }else{
     if((pInput.value.slice(-6)=="_admin")&&checkUsernamePassword(uInput.value,pInput.value)){
-      localStorage.setItem("user name", pInput.value);
+      localStorage.setItem("admin name", uInput.value);
       window.location.href="/AdminDashboard/adminDashBoard.html";
     }else{
       localStorage.setItem("user name", uInput.value);

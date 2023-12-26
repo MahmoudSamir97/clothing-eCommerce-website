@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="adminStyle.css" rel="stylesheet">
-
 </head>
 <body>
     <nav class="main-nav">
         <img src="../images/logo.svg" alt="logo" class="main-page">
-        <ul class="linksList">     
-            <li class="item"><a class="link" href="../main.html">Logout</a></li>
-            <li class="item"><a class="link" href="#">Category</a></li>
+        <select name="user name" class="user-name-dropDown">
+            <option  id="admin-name"></option>
+        </select>
+        <ul class="linksList">  
+            <li class="item"><a class="link" href="#">Orders</a></li>   
             <li class="item"><a class="link" href="#">Products</a></li>
-            <li class="item"><a class="link" href="#">Orders</a></li>
+            <li class="item"><a class="link" href="#">Category</a></li>
+            <li class="item"><a style="color: red;" class="link" href="../main.html">Logout</a></li>
         </ul>
     </nav>
-
     <div class="order-container">
         <h1>Pendig Orders...</h1>
-        <h3 id="user-name"></h3>
+        <p>User: <span id="user-name" style="color: red; font-size: 1.5rem"></span></p>
         <table>
             <thead>
                 <tr>
@@ -39,8 +39,8 @@
         </table>
     </div>
     <div class="btns-container">
-        <button>Confirm</button>
-        <button>Reject</button>
+        <button class="confirm-btn btn">Confirm</button>
+        <button class="reject-btn btn">Reject</button>
     </div>
 
 <!--     
@@ -56,9 +56,9 @@
     <!-- <div class="products-container" id="main-container">   
     </div> -->
     
-    <!-- <footer>
+    <footer>
         <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
-    </footer> -->
+    </footer>
     <script src="adminScript.js"></script>
 </body>
 </html>
