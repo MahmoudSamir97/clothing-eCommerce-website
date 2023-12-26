@@ -178,11 +178,9 @@ footer{
 }
 /* cart */
 .cart{
-    /* visibility: hidden; */
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    top: 0;
     right: 0;
     width: 26.25rem;
     background-color: #fff;
@@ -447,8 +445,7 @@ footer{
     border-radius: 10px;
   }
   .wish-list-container{
-    /* visibility: hidden; */
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     top: 0;

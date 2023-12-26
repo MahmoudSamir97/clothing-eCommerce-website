@@ -126,6 +126,7 @@ form.addEventListener("submit", function (event) {
           if(!(pass.slice(-6)=="_admin")){
             window.location.href="../Login/login.html";
           }else{ 
+            localStorage.setItem("admin name", userName);
             window.location.href="../AdminDashboard/adminDashBoard.html";
           }
         }, 800);
@@ -166,7 +167,6 @@ form.addEventListener("submit", function (event) {
   }
 );
 
-console.log(usersArr);
 nextBtnFirst.addEventListener("click", function (event) {
   let fname = fnameField.value;
   let lname = lnameField.value;

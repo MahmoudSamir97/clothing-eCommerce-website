@@ -14,6 +14,24 @@ const productDescContainer = document.querySelector(".product-description");
 const btnsContainer = document.querySelector(".btns-container");
 const statusBtn = document.querySelector(".status-btn");
 statusBtn.textContent = localStorage.getItem("order status");
+const productsFromStorage = readFromLocalStorage("products");
+// 
+function renderFilterBtns(){
+    const btnsContainer = document.getElementById("buttons");
+    btnsContainer.innerHTML = '';
+    const categoriesArr = [];
+    productsFromStorage.forEach(product=> categoriesArr.push(product.category));
+    const uniqueCategoriesFromStorage = [...new Set(categoriesArr)];
+    uniqueCategoriesFromStorage.forEach(category=>{
+        const btn = document.createElement("button");
+        btn.setAttribute("class","button-value");
+        btn.innerText = category;
+        btn.addEventListener("click",()=> filterProduct(category));
+        btnsContainer.append(btn);
+        
+    });
+};
+
 cartLogoBtn.addEventListener("click",()=>{
     cartContainer.style.display = "block";
 });
@@ -42,20 +60,10 @@ window.onscroll = function(){
     }
 };
 
-// Getting products from API
-const getProducts = async function(){
-    const productsArr = [];
-    const response = await fetch("https://fakestoreapi.com/products");
-    const data = await response.json();
-    productsArr.push(data);
-    return productsArr;
-};
-
-// render products from API
-const displayOnPage = async()=>{
-    const products = await getProducts(); 
-    const productsArray = products.flat();
-    renderProducts(productsArray);
+// main function executed first when DOM load
+const displayOnPage = ()=>{
+    renderProducts(productsFromStorage);
+    renderFilterBtns();
     attacheventHandler();
     removeAllFromCart();
     renderUserName();
@@ -63,80 +71,78 @@ const displayOnPage = async()=>{
     calcTotal(pendingItems);
 }
 
-    // aside cart handler function
-     function updateCartDisplay(){
-         renderCartItems(cartItems);
-         calcTotal(cartItems);
-         statusBtn.textContent = "status";
-        // increasing and decreasing when clicking on add and minus btn beside item in cart 
-        const minusBtns = document.querySelectorAll(".minus_btn");
-        const addBtns = document.querySelectorAll(".add_btn");
-        minusBtns.forEach(btn=>{
-            btn.addEventListener("click", (e)=>{
-                cartItems.forEach(item=>{
-                    if(parseInt(e.target.dataset.id) === item.id ){
-                        const index = cartItems.indexOf(item);
-                        item.quantity--;
-                        if (item.quantity <= 0){
-                            cartItems.splice(index,1);
-                        }
+
+// shopping cart handler function
+function updateCartDisplay(){
+    renderCartItems(cartItems);
+    calcTotal(cartItems);
+    statusBtn.textContent = "status";
+// increasing and decreasing when clicking on add and minus btn beside item in cart 
+    const minusBtns = document.querySelectorAll(".minus_btn");
+    const addBtns = document.querySelectorAll(".add_btn");
+    minusBtns.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            cartItems.forEach(item=>{
+                if(parseInt(e.target.dataset.id) === item.id ){
+                    const index = cartItems.indexOf(item);
+                    item.quantity--;
+                    if (item.quantity <= 0){
+                        cartItems.splice(index,1);
+                    }
+                }
+                updateCartDisplay();
+            })
+        });
+    });
+    addBtns.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            cartItems.forEach(item=>{
+                if(parseInt(e.target.dataset.id) === item.id ){
+                    item.quantity++;
+                }
+                updateCartDisplay();
+            })
+
+        });
+    });
+
+    // delete item from cart when click on *
+    const deleteBtns = document.querySelectorAll(".close-btn");
+    deleteBtns.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            cartItems.forEach(item=>{
+                if(parseInt(e.target.dataset.id) === item.id ){
+                    const index = cartItems.indexOf(item);
+                        cartItems.splice(index,1);
                     }
                     updateCartDisplay();
-                })
             });
         });
-        addBtns.forEach(btn=>{
-            btn.addEventListener("click", (e)=>{
-                cartItems.forEach(item=>{
-                    if(parseInt(e.target.dataset.id) === item.id ){
-                        item.quantity++;
-                    }
-                    updateCartDisplay();
-                })
+    });
+};
 
-            });
+function removeAllFromCart(){
+    const rubbishIcon = document.querySelector(".rubbish-icon");
+    rubbishIcon.addEventListener("click", ()=>{
+        cartItems = [];
+        updateCartDisplay();
+    });
+}
+  
+
+/* Helper Function */
+// filter function
+function filterProduct(category){
+    if (category != "all"){
+        const filteredArr = productsFromStorage.filter(product=>{
+            return product.category == category;
         });
-
-        // delete item from cart when click on *
-        const deleteBtns = document.querySelectorAll(".close-btn");
-        deleteBtns.forEach(btn=>{
-            btn.addEventListener("click", (e)=>{
-                cartItems.forEach(item=>{
-                    if(parseInt(e.target.dataset.id) === item.id ){
-                        const index = cartItems.indexOf(item);
-                            cartItems.splice(index,1);
-                        }
-                        updateCartDisplay();
-                });
-            });
-        });
-    };
-
-    function removeAllFromCart(){
-        const rubbishIcon = document.querySelector(".rubbish-icon");
-        rubbishIcon.addEventListener("click", ()=>{
-            cartItems = [];
-            updateCartDisplay();
-        })
+        renderProducts(filteredArr);
+    } else{
+        renderProducts(productsFromStorage);
     }
-    // main function get executed first
-    window.addEventListener("DOMContentLoaded", displayOnPage());
-
-    /* Helper Function */
-    // filter function
-    async function filterProduct(category){
-        const products = await getProducts();
-        const productsArray = products.flat();
-        if (category != "all"){
-            const filteredArr = productsArray.filter(product=>{
-                return product.category == category;
-            });
-            renderProducts(filteredArr);
-        } else{
-            renderProducts(productsArray);
-        }
-        attacheventHandler();
-    };
+    attacheventHandler();
+};
 
     // render products in html
     function renderProducts(arr){
@@ -188,12 +194,9 @@ const displayOnPage = async()=>{
         </div>
         `;
         });
-    }
-
+    };
 // add and eye icon handler function
 async function attacheventHandler(){
-    const products = await getProducts(); 
-    const productsArray = products.flat();
     // add icon (+)
     const addBtns = document.querySelectorAll("#add-btn");
     for(let i =0 ; i < addBtns.length; i++){
@@ -201,7 +204,7 @@ async function attacheventHandler(){
         function addToCart(e){
             const currentelement = e.target.parentElement.parentElement;
             const currentelementId = parseInt(currentelement.getAttribute("data-id"));
-            const targetElementInArray = productsArray.find(element=> element.id === currentelementId);  
+            const targetElementInArray = productsFromStorage.find(element=> element.id === currentelementId);  
             // // create separate object, can't modify directly on Array object
             const existInCartItems = cartItems.find(item=> item.id === targetElementInArray.id);
             if(existInCartItems){
@@ -223,8 +226,7 @@ function showingTheCart(e){
     productDescContainer.style.display = "flex";
     productsContainer.style.display = "none";
     const currentelement = e.target.parentElement.parentElement;
-    const targetProduct = productsArray.find( product => product.id === parseInt(currentelement.getAttribute("data-id")));
- 
+    const targetProduct = productsFromStorage.find( product => product.id === parseInt(currentelement.getAttribute("data-id")));
     productDescContainer.innerHTML = `
             <div class="desc-image-container">
                 <img src="${targetProduct.image}" alt="product image">
@@ -239,7 +241,7 @@ function showingTheCart(e){
     const addFromDesc = document.querySelector(".desc-product-AddButton");
     addFromDesc.addEventListener("click",(e)=> {
         const targetElemId = parseInt(e.target.dataset.id);
-        const targetElemInArray = productsArray.find(product=> product.id === targetElemId);
+        const targetElemInArray = productsFromStorage.find(product=> product.id === targetElemId);
         const existInCartItems = cartItems.find(item => item.id === targetElemInArray.id);
         if(existInCartItems){
             existInCartItems.quantity++;
@@ -273,10 +275,10 @@ function renderUserName(){
 
 async function addToWishList(e){
     // add to wish list
-    const products = await getProducts(); 
-    const productsArray = products.flat();
+    // const products = await getProducts(); 
+    // const productsArray = products.flat();
     const ClickedElementDataId = parseInt(e.target.parentElement.dataset.id);
-    const targetObjInArr = productsArray.find( obj=> obj.id === ClickedElementDataId );
+    const targetObjInArr = productsFromStorage.find( obj=> obj.id === ClickedElementDataId );
     const existInWishList = wishList.find(obj=> obj.id === targetObjInArr.id);
     if(!existInWishList){
         wishList.push(targetObjInArr);
@@ -303,31 +305,36 @@ function updateWishList(){
             </div>
         </div>
         <div class="lst-col">
-            <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn close-wish">
+            <img src="images/close.png" alt="close cart" data-id="${item.id}" class="close-btn close-wish" onclick="deleteWish(event)">
         </div>
         </div>
         `
-    });
-        // delete item from cart when click on *
-        const deleteBtns = document.querySelector(".close-btn");
-            if(deleteBtns){
-                deleteBtns.addEventListener("click", (e)=>{
-                    wishList.forEach(item=>{
-                        if(parseInt(e.target.dataset.id) === item.id ){
-                            const index = wishList.indexOf(item);
-                                wishList.splice(index,1);
-                            }
-                            updateWishList();
-                    });
-                });
-            }
-}
+    });              
+};
 const orderBtn = document.querySelector(".check-out");
 orderBtn.addEventListener("click", ()=>{
     localStorage.setItem("pending items", JSON.stringify(cartItems));
     localStorage.setItem("order status", "pending..");
     window.location.href = 'AdminDashboard/adminDashBoard.html';
-})
+});
+
+function readFromLocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+};
+function deleteWish(e){
+    wishList.forEach(item=>{
+        if(parseInt(e.target.dataset.id) === item.id ){
+            const index = wishList.indexOf(item);
+                wishList.splice(index,1);
+            }
+            updateWishList();
+    });
+    console.log(wishList);
+};
+
+// main function get executed first
+window.addEventListener("DOMContentLoaded", displayOnPage());
+
 
 
 

@@ -68,7 +68,6 @@ function checkUsernamePassword(username,password){
 
   const arr=readArrayFromLocalStorage("users");
 
-console.log(arr);
 let result=false;
 for(let i=0;i<arr.length;i++){
 //console.log(arr[i].username);
