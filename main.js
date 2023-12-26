@@ -12,8 +12,8 @@ const wishListContainer = document.querySelector(".wish-list-container");
 const productsContainer = document.getElementById("main-container");
 const productDescContainer = document.querySelector(".product-description");
 const btnsContainer = document.querySelector(".btns-container");
-const statusBtn = document.querySelector(".status-btn");
-statusBtn.textContent = localStorage.getItem("order status");
+const statusHolder = document.querySelector(".view-status");
+statusHolder.textContent = localStorage.getItem("order status");
 const productsFromStorage = readFromLocalStorage("products");
 // 
 function renderFilterBtns(){

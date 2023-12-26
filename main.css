@@ -319,6 +319,8 @@ footer{
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+    font-size: 16px;
+    font-weight: 500;
 }
 .cartFooter-btn{
     padding: 0.7rem 0;
@@ -326,6 +328,14 @@ footer{
     cursor: pointer;
     border: none;
     font-weight: 500;
+    font-size: 1rem;
+}
+
+.view-status{
+    color: black;
+    background-color: rgb(39, 210, 219);
+    padding: 0.5rem;
+    border-radius: 3px;
 }
 .view-cart{
     background-color: lightgray;

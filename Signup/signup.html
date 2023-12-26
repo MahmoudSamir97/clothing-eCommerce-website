@@ -41,13 +41,14 @@
         </div>
       </div>
       <div class="form-outer" id="signupForm" method="get">
+        <!-- form -->
         <form action="#">
           <div class="page slide-page">
             <div class="title">Basic Info:</div>
             <div class="field">
               <!-- <div class="label">First Name</div> -->
               <div class="input_area inputFname">
-              <input type="text" id="fnameField" required placeholder="First Name">
+              <input type="text" id="fnameField"  placeholder="First Name">
               <i class="icon fa-solid fa-user"></i>
              <i class="error error-icon fas fa-exclamation-circle"></i>
             </div>
@@ -56,7 +57,7 @@
             <div class="field">
               <!-- <div class="label">Last Name</div> -->
               <div class="input-area">
-              <input type="text" id="lnameField" required placeholder="Second Name">
+              <input type="text" id="lnameField"  placeholder="Second Name">
               <i class="icon fa-solid fa-user"></i>
              <i class="error error-icon fas fa-exclamation-circle"></i>
             </div>
@@ -116,26 +117,25 @@
           </div>
 
           <div class="page userDataPage">
-            <div class="title">Login Details:</div>
+          <div class="title">Login Details:</div>
             <div class="field">
               <!-- <div class="label">Username</div> -->
               <div class="inputUser">
-              <input type="text" id="username" placeholder="Username">
-              <i class="iconUser fa-solid fa-user"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
+                <input type="text" id="username" placeholder="Username">
+                <i class="iconUser fa-solid fa-user"></i>
+                <i class="error error-icon fas fa-exclamation-circle"></i>
+              </div>
+              <span id="spMessage5" class="spMessage"></span>
             </div>
-            <span id="spMessage5" class="spMessage"></span>
-            </div>
-            <div class="field">
-              <!-- the new one -->
-              <div class="inputPassword">
-              <input type="password" id="password" placeholder="Password">
-              <i class="iconPass fas fa-lock"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
-
-            </div>
-            <span id="spMessage6" class="spMessage"></span>
-            </div>
+              <div class="field">
+                <!-- the new one -->
+                <div class="inputPassword">
+                  <input type="password" id="password" placeholder="Password">
+                  <i class="iconPass fas fa-lock"></i>
+                  <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
+                <span id="spMessage6" class="spMessage"></span>
+              </div>
             <div class="field btns" id="userPass">
               <div class="prev-3 prev btnN">Previous</div>
               <button class="submit btnN">Submit</button>
