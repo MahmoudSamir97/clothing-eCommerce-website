@@ -1,4 +1,3 @@
-const productsContainer = document.getElementById("main-container");
 window.onscroll = function(){
     const nav = document.querySelector("nav");
     if(window.scrollY >=20){

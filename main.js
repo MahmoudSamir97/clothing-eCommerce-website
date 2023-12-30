@@ -15,6 +15,8 @@ const btnsContainer = document.querySelector(".btns-container");
 const statusHolder = document.querySelector(".view-status");
 statusHolder.textContent = localStorage.getItem("order status");
 const productsFromStorage = readFromLocalStorage("products");
+const wishesFromStorage = readFromLocalStorage("wish list");
+const saveWishesBtn = document.querySelector(".button-1");
 // 
 function renderFilterBtns(){
     const btnsContainer = document.getElementById("buttons");
@@ -27,8 +29,7 @@ function renderFilterBtns(){
         btn.setAttribute("class","button-value");
         btn.innerText = category;
         btn.addEventListener("click",()=> filterProduct(category));
-        btnsContainer.append(btn);
-        
+        btnsContainer.append(btn);  
     });
 };
 
@@ -69,6 +70,7 @@ const displayOnPage = ()=>{
     renderUserName();
     renderCartItems(pendingItems);
     calcTotal(pendingItems);
+    updateWishList(wishesFromStorage);
 }
 
 
@@ -76,7 +78,6 @@ const displayOnPage = ()=>{
 function updateCartDisplay(){
     renderCartItems(cartItems);
     calcTotal(cartItems);
-    statusBtn.textContent = "status";
 // increasing and decreasing when clicking on add and minus btn beside item in cart 
     const minusBtns = document.querySelectorAll(".minus_btn");
     const addBtns = document.querySelectorAll(".add_btn");
@@ -127,21 +128,16 @@ function removeAllFromCart(){
         cartItems = [];
         updateCartDisplay();
     });
-}
-  
+};
 
 /* Helper Function */
 // filter function
 function filterProduct(category){
-    if (category != "all"){
         const filteredArr = productsFromStorage.filter(product=>{
             return product.category == category;
         });
         renderProducts(filteredArr);
-    } else{
-        renderProducts(productsFromStorage);
-    }
-    attacheventHandler();
+        attacheventHandler();
 };
 
     // render products in html
@@ -205,7 +201,7 @@ async function attacheventHandler(){
             const currentelement = e.target.parentElement.parentElement;
             const currentelementId = parseInt(currentelement.getAttribute("data-id"));
             const targetElementInArray = productsFromStorage.find(element=> element.id === currentelementId);  
-            // // create separate object, can't modify directly on Array object
+            // create separate object, can't modify directly on Array object
             const existInCartItems = cartItems.find(item=> item.id === targetElementInArray.id);
             if(existInCartItems){
                 existInCartItems.quantity++;
@@ -273,10 +269,7 @@ function renderUserName(){
     });
 }
 
-async function addToWishList(e){
-    // add to wish list
-    // const products = await getProducts(); 
-    // const productsArray = products.flat();
+ function addToWishList(e){
     const ClickedElementDataId = parseInt(e.target.parentElement.dataset.id);
     const targetObjInArr = productsFromStorage.find( obj=> obj.id === ClickedElementDataId );
     const existInWishList = wishList.find(obj=> obj.id === targetObjInArr.id);
@@ -284,15 +277,15 @@ async function addToWishList(e){
         wishList.push(targetObjInArr);
     }
     // render from wish list
-    updateWishList();
+    updateWishList(wishList);
 }
 
-function updateWishList(){
+function updateWishList(wishArr){
     const itemsContainer = document.querySelector(".wish-list-items");
     const countHolder = document.getElementById("wish-list-count");
-    countHolder.textContent = wishList.length;
+    countHolder.textContent = wishArr.length;
     itemsContainer.innerHTML = '';
-    wishList.forEach(item=>{
+    wishArr.forEach(item=>{
         itemsContainer.innerHTML += `
         <div class="cart-item">
         <div class="img-container">
@@ -314,22 +307,31 @@ function updateWishList(){
 const orderBtn = document.querySelector(".check-out");
 orderBtn.addEventListener("click", ()=>{
     localStorage.setItem("pending items", JSON.stringify(cartItems));
-    localStorage.setItem("order status", "pending..");
-    window.location.href = 'AdminDashboard/adminDashBoard.html';
+    localStorage.setItem("order status", "Pending...");
+    statusHolder.textContent = localStorage.getItem("order status");
+    // window.location.href = 'AdminDashboard/adminDashBoard.html';
 });
+saveWishesBtn.addEventListener("click", ()=>{
+    writeToLocalStorage("wish list", wishList);
+});
+
+function deleteWish(e){
+    console.log("clicked");
+    wishList.forEach(item=>{
+        if(parseInt(e.target.dataset.id) === item.id ){
+            const index = wishList.indexOf(item);
+            wishList.splice(index,1);
+            }
+            updateWishList(wishList);
+    });
+};
 
 function readFromLocalStorage(key){
     return JSON.parse(localStorage.getItem(key));
 };
-function deleteWish(e){
-    wishList.forEach(item=>{
-        if(parseInt(e.target.dataset.id) === item.id ){
-            const index = wishList.indexOf(item);
-                wishList.splice(index,1);
-            }
-            updateWishList();
-    });
-    console.log(wishList);
+function writeToLocalStorage(key, value){
+    const jsonString = JSON.stringify(value);
+    localStorage.setItem(key, jsonString);
 };
 
 // main function get executed first

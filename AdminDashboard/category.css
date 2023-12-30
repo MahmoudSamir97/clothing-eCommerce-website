@@ -42,68 +42,28 @@ body{
 .link:hover{
     color: red;
 }
-footer{
-    padding: 2rem;
-    text-align: center;
-    color: #fff;
-    background-color: #000;
-}
-.createProductContainer{
-    display: block;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    padding-left: 0px;
-}
-input[type="text"]{
-    margin-top: 50px;
-    display: block;
-    padding: 15px;
-    width: 100%;
-} 
-.order-container{
-    margin-top: 1rem;
-    padding: 2rem;
-}
-
-.order-img{
-    display: inline-block;
-    width: 70px;
-    height: 80px;
-}
-table, th, td {
-    border: 1px solid;
-    padding: 0.25rem;
-}
-.center{
-    text-align: center;
-    align-self: center;
-}
 .btns-container{
-    text-align: center;
-    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    margin-top: 7rem;
 }
-
-.btn{
-    padding: 0.85rem 3rem;
-    margin-bottom: 4rem;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    transition: all 0.5s ease-in-out;
-}
-
-.btn:hover{
-    background-color: #000;
+  .button-value {
+    padding: 1em 2.2em;
+    background-color: #003049;
     color: #fff;
-}
-
-.reject-btn{
-    background-color: red;
-    color: white;
-    margin-left: 0.5rem;
-}
-.user-name-dropDown{
+    border-radius: 3em;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: all 0.5s ease-in-out;
+  }
+  .button-value:hover{
+    background-color: #F7F7F7;
+    color: #000;
+  }
+  .user-name-dropDown{
     position: absolute;
     left: 9rem;
     border: none;
@@ -116,11 +76,24 @@ table, th, td {
     font-weight: 700;
     background-color: transparent;
   }
-.user-main{
-    font-weight: 600;
-    margin-left: 1.75rem;
-}
-.user:hover{
-    color: blue;
-}
 
+  h2{
+    margin-top: 5rem;
+    margin-bottom: 0;
+    padding: 0.25rem 2rem;
+  }
+
+  .delete-btn{
+    cursor: pointer;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-left: 0.45rem;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+  }
+
+  .delete-btn:hover{
+    opacity: 1;
+  }
